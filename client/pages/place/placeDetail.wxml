@@ -1,0 +1,92 @@
+<!--pages/discovery/placeDetail.wxml-->
+<view class="page">
+  <view class="page__hd">
+
+  </view>
+
+
+  <view class="page__bd">
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="color:white;background-color:OrangeRed;text-align: center;font-size:60rpx">
+        {{place.title}}
+      </view>
+    </view>
+
+    <view class="weui-flex">
+
+      <view class="weui-flex__item">
+        综合评分：{{place.overall_rating}}
+      </view>
+    </view>
+
+    <view class="weui-flex">
+
+      <view class="weui-flex__item">
+        距离：{{place.distance/1000}}公里
+      </view>
+    </view>
+
+    <view class="weui-flex">
+
+      <view class="weui-flex__item">
+        Tel：{{place.telephone}}
+      </view>
+    </view>
+
+    <view class="weui-flex">
+
+      <view class="weui-flex__item">
+        人均消费：{{place.price}}元
+      </view>
+    </view>
+
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        服务评分：{{place.service_rating}}/5
+      </view>
+    </view>
+
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        地址：{{place.address}}
+      </view>
+    </view>
+
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        驻场教练
+      </view>
+    </view>
+
+    <swiper indicator-dots="true" indicator-color="purple" indicator-active-color="OrangeRed"  interval="2000" duration="500">
+      <block wx:for="{{trainer}}">
+        <swiper-item style="text-align:center;width:100%">
+          <image src="{{item.avatar}}" class="avatar" mode="widthFix" width="300" height="300" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        驻场陪练
+      </view>
+    </view>
+    <swiper indicator-dots="true" indicator-color="purple" indicator-active-color="OrangeRed"  interval="2000" duration="500">
+      <block wx:for="{{trainer}}">
+        <swiper-item style="text-align:center;width:100%">
+          <image src="{{item.avatar}}" class="avatar" mode="widthFix" width="300" height="300" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="weui-flex">
+      <!-- <button  size="mini"  disabled="true" > 场地预约 </button> -->
+      <!-- <navigator url="../action/createAction?sprTypes={{}}&areaAddress={{place.address}}&areaName={{place.title}}">
+        
+      </navigator> -->
+
+    </view>
+    <button type="primary" bindtap="addAction"> 发起活动 </button>
+  </view>
+
+
+</view>

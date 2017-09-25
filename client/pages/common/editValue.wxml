@@ -1,0 +1,16 @@
+<!--pages/common/editValue.wxml-->
+<view class="page">
+<view class="page__hd">
+</view>
+<view class="page__bd">
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view class="section">
+  {{parms.desc}}:
+  <input name="value" type="text" placeholder="" value="{{parms.value}}" style="border-bottom-style:solid;border-width:1px;border-color:gray;"/>
+</view>
+
+<button formType="submit" type="primary"> 确认 </button>
+
+</form>
+</view>
+</view>

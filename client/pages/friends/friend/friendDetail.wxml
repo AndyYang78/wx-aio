@@ -1,0 +1,113 @@
+<import src="/common/template.wxml" />
+<view class="page">
+  <view class="page__hd" style="color:Orange;">
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center">
+        <image class="userinfo-avatar" src="http://www.qqleju.com/uploads/allimg/160622/22-101309_76.jpg" background-size="cover"></image>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center;color:white;">
+        中软国际HSBC业务线
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center">
+        89
+      </view>
+      <view class="weui-flex__item" style="text-align:center">
+        4
+      </view>
+      <view class="weui-flex__item" style="text-align:center">
+        34
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center">
+        排名
+      </view>
+      <view class="weui-flex__item" style="text-align:center">
+        成员数
+      </view>
+      <view class="weui-flex__item" style="text-align:center">
+        活跃度
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+
+    <view class="weui-flex" style="padding:10px">
+      <view class="weui-flex__item">
+        <view class="weui-flex" style="text-align:center;font-size:32px;color:Purple">
+          <view class="weui-flex__item fa fa-bell"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px">
+          <view class="weui-flex__item">议事厅</view>
+        </view>
+      </view>
+      <view class="weui-flex__item" bindtap="clubManage">
+        <view class="weui-flex" style="text-align:center;font-size:32px;color:Purple">
+          <view class="weui-flex__item  fa fa-calendar"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px" >
+          <view class="weui-flex__item">圈日历</view>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="weui-flex" style="text-align:center;font-size:32px;color:Purple">
+          <view class="weui-flex__item fa fa-flag"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px">
+          <view class="weui-flex__item">圈活动</view>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="weui-flex" style="text-align:center;font-size:32px;color:Purple">
+          <view class="weui-flex__item fa fa-photo"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px">
+          <view class="weui-flex__item">圈相册</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-flex line">
+      <view class="weui-flex__item">
+        招新，快来，活动多多，朋友多多，健康多多！
+      </view>
+    </view>
+    <view class="weui-flex line lineB" style="font-weight:bold;padding-bottom:10rpx">
+        <view class="weui-flex__item">
+成员
+        </view>       
+        <view class="weui-flex__item" style="text-align:center;">
+活跃度
+        </view>
+        <view class="weui-flex__item" style="text-align:center;">
+等级
+        </view>
+        <view class="weui-flex__item" style="text-align:center;">
+
+        </view>
+      </view>
+      <view class="page_list lineB" wx:for="{{friends}}">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+<image class="" src="{{item.avatarUrl}}" background-size="cover" style="width:20px;height:20px;text-align:right;border-radius:20%;"></image><text style="margin:20rpx;">{{item.name}}</text>
+        </view> 
+         
+        <view class="weui-flex__item" style="text-align:center;">
+{{item.actParticipate}}
+        </view>
+        <view class="weui-flex__item" style="text-align:center;">
+{{item.level}}
+        </view>
+        <view class="weui-flex__item" style="text-align:center;">
+<view class="fa fa-user-circle"></view>
+        </view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="submit">邀约</button>
+    </view>
+  </view>
+</view>

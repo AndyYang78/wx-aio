@@ -1,0 +1,10 @@
+/* pages/friend/showFriend.wxss */
+.userinfo-avatar {
+  width: 250rpx;
+  height: 250rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  color: #000;
+}

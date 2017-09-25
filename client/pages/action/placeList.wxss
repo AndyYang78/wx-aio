@@ -1,0 +1,30 @@
+/* pages/action/placeList.wxss */
+
+
+ .page__hd.location {
+	color: #fff;
+	font-size: 30rpx;
+	line-height: 40rpx;
+	min-width: 100rpx;
+	max-width: 340rpx;
+	padding: 10rpx 20rpx 10rpx 10rpx;
+	border-radius: 30rpx;
+	/*background: rgba(0,0,0,0.3);*/
+	margin-right: 20rpx;
+	vertical-align: middle;
+}
+
+.page__hd .icon {
+	width: 40rpx;
+	height: 40rpx;
+	vertical-align: top;
+}
+
+.choiceType{
+	display: inline-flex;
+	flex-direction: row ;
+	flex-wrap: nowrap;
+	align-content:space-around
+}
+
+.b1{position:fixed;width:100%;height:60%;top:60px;background:rgba(0,0,0,0.4);overflow: hidden;}

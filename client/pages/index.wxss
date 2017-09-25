@@ -1,0 +1,22 @@
+/**index.wxss**/
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.userinfo-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #fff;
+}
+
+
+
+ 

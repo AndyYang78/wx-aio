@@ -1,0 +1,50 @@
+
+<!--pages/common/sportLevel.wxml-->
+<view class="page">
+  <view class="page__hd">
+  </view>
+
+  <view class="page__bd">
+
+    <view class="weui-flex">
+     <view class="weui-flex__item"> 
+        <view style="background-color:yellow;text-align: center;font-size:40px">Lv.35</view>    
+     </view>   
+    </view>
+   <view class="weui-flex">
+   <view class="weui-flex__item"><slider min="300" max="400" disabled="true" value="355"/>
+   </view>
+   </view>
+   <view class="weui-flex" style="font-size:12px">
+   <view class="">Lv.35(300)</view>
+   <view class="weui-flex__item" style="text-align: center;">当前分值355</view>
+   <view class="">Lv.36(400)</view>
+   </view>
+<view class="weui-flex">
+   <view class=""></view>
+   <view class="weui-flex__item" style="text-align: center;">咸阳市排名789-超越67%的用户</view>
+   <view class=""></view>
+   </view>
+
+
+   <view class="weui-cells__title">积分构成</view>
+   <view class="weui-cells weui-cells_after-title">
+   <view class="weui-cell">
+                <view class="weui-cell__bd">活跃度</view>
+                <view class="weui-cell__ft">150</view>
+   </view>
+   <view class="weui-cell">
+                <view class="weui-cell__bd">参与度</view>
+                <view class="weui-cell__ft">50</view>
+   </view>
+   <view class="weui-cell">
+                <view class="weui-cell__bd">比赛能力</view>
+                <view class="weui-cell__ft">155</view>
+   </view>
+   </view>
+<button type="primary" size="" loading="" plain=""
+        disabled="" bindtap="default" hover-class="other-button-hover"> 看看我的等级 </button>
+
+   
+   </view>
+</view>

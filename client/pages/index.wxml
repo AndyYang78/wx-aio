@@ -1,0 +1,172 @@
+<!--index.wxml-->
+
+<view class="page">
+  <view class="page__hd">
+    <view class="location ellipsis">
+      <view class="fa fa-map-marker"></view>
+      {{cityName}}
+    </view>
+  </view>
+
+
+  <view class="page__bd">
+
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:200rpx">
+      <block wx:for-items="{{imgUrls}}" wx:key="{{*this}}">
+        <swiper-item style="text-align:center;width:100%">
+          <image src="{{item}}" mode="scaleToFill" />
+        </swiper-item>
+      </block>
+
+    </swiper>
+    <!-- <view class="fa fa-bullhorn" style="color:purple">
+      <text style="color:black;font-weight:bold"> : 恍惚在西高新发起了活动！</text>
+    </view> -->
+
+    <view class="weui-flex line lineB">
+      <view class="" style="color:OrangeRed;font-weight:bold;font-size:10px">
+        <view class="weui-flex">小熊</view>
+        <view class="weui-flex">公告</view>
+      </view>
+      <view class="weui-flex__item" style="margin-left:12px">
+        <swiper autoplay="true" interval="4000" duration="3000" style="height:50rpx" vertical="true">
+          <block wx:for-items="{{toutiao}}" wx:key="{{*this}}">
+            <swiper-item style="width:100%">
+              <text style="white-space:pre-wrap;font-size:12px">{{item}}</text>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+
+    <view class="weui-flex" style="padding:10px">
+      <view class="weui-flex__item">
+        <view class="weui-flex" style="text-align:center;font-size:48px;color:Purple">
+          <view class="weui-flex__item fa fa-bell"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px">
+          <view class="weui-flex__item">议事厅</view>
+        </view>
+      </view>
+      <view class="weui-flex__item" bindtap="clubManage">
+        <view class="weui-flex" style="text-align:center;font-size:48px;color:Purple">
+          <view class="weui-flex__item  fa fa-calendar"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px">
+          <view class="weui-flex__item">圈日历</view>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="weui-flex" style="padding:10px">
+
+      <view class="weui-flex__item">
+        <view class="weui-flex" style="text-align:center;font-size:48px;color:Purple">
+          <view class="weui-flex__item fa fa-flag"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px">
+          <view class="weui-flex__item">圈活动</view>
+        </view>
+      </view>
+      <view class="weui-flex__item" bindtap="library">
+        <view class="weui-flex" style="text-align:center;font-size:48px;color:Purple">
+          <view class="weui-flex__item fa fa-university"></view>
+        </view>
+        <view class="weui-flex" style="text-align:center;font-size:12px">
+          <view class="weui-flex__item">资料室</view>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- <view class="weui-flex">
+      <view class="weui-flex__item card_v">
+        <view class="card_header_v">资料</view>
+        <view class="card_footer_v">一起运动起来吧</view>
+      </view>
+      <view class="weui-flex__item card_v">
+        <view class="card_header_v">资料</view>
+        <view class="card_footer_v">一起运动起来吧</view>
+      </view>
+      <view class="weui-flex__item card_v">
+        <view class="card_header_v">资料</view>
+        <view class="card_footer_v">一起运动起来吧</view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item card_v">
+        <view class="card_header_v">资料</view>
+        <view class="card_footer_v">一起运动起来吧</view>
+      </view>
+      <view class="weui-flex__item card_v">
+        <view class="card_header_v">资料</view>
+        <view class="card_footer_v">一起运动起来吧</view>
+      </view>
+      <view class="weui-flex__item card_v">
+        <view class="card_header_v">资料</view>
+        <view class="card_footer_v">一起运动起来吧</view>
+      </view>
+    </view> -->
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">推荐好友</view>
+      <view class="weui-panel__bd">
+        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505408814251&di=96e3fdd9e565e4e24e99f1f01e326ace&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D1057519802%2C4245354110%26fm%3D214%26gp%3D0.jpg"
+            />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">标题一</view>
+            <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+          </view>
+        </navigator>
+        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505408805565&di=71696be7f09bd51315d613ba8f7ba3e8&imgtype=0&src=http%3A%2F%2Fp.3761.com%2Fpic%2F231432169575.jpg" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">标题二</view>
+            <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+          </view>
+        </navigator>
+      </view>
+      <view class="weui-panel__ft">
+        <view class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">查看更多</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">推荐活动</view>
+      <view class="weui-panel__bd">
+        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505408814251&di=96e3fdd9e565e4e24e99f1f01e326ace&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D1057519802%2C4245354110%26fm%3D214%26gp%3D0.jpg"
+            />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">标题一</view>
+            <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+          </view>
+        </navigator>
+        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505408805565&di=71696be7f09bd51315d613ba8f7ba3e8&imgtype=0&src=http%3A%2F%2Fp.3761.com%2Fpic%2F231432169575.jpg" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">标题二</view>
+            <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+          </view>
+        </navigator>
+      </view>
+      <view class="weui-panel__ft">
+        <view class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">查看更多</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

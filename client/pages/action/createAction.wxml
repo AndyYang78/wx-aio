@@ -1,0 +1,161 @@
+<!--pages/action/createAction.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">我要发起一个活动</view>
+     
+  </view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit" report-submit="true">
+
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd"> 
+            <view class="weui-label">活动标题：</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input name="actSubject" type="text" class="weui-input" placeholder="请给你的活动设置一个标题" value="{{action.actSubject}}" bindinput="actSubjectChange"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">请设置活动的基本信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">运动类型：</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker id="sprType" bindchange="sprTypeChange" mode="selector" value="{{sprTypes[sprTypeIndex]}}" range="{{sprTypes}}" name="sprType">
+              <view class="weui-input">{{sprTypes[sprTypeIndex]}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">活动类型：</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker id="actType" mode="selector" value="{{actTypes[actTypeIndex]}}" range="{{actTypes}}" bindchange="actTypeChange" name="actType">
+              <view class="weui-input">{{actTypes[actTypeIndex]}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">费用类型</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker id="feeType" mode="selector" value="{{feeTypes[feeTypeIndex]}}" range="{{feeTypes}}" bindchange="feeTypeChange" name="feeType">
+              <view name="feeType" class="weui-input">{{feeTypes[feeTypeIndex]}}</view>
+
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">估计费用：</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-flex">
+              <view class="weui-flex__item" style="">
+                <input name="feeEst" type="digit" class="weui-input" placeholder="请输入预计费用" value="{{action.feeEst}}" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cell__ft">元</view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">人数限制</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input name="planPeople" class="weui-input" type="number" placeholder="最多参与的人数" />
+          </view>
+          <view class="weui-cell__ft">位</view>
+        </view>
+        
+      </view>
+
+      <view class="weui-cells__title">设置活动安排</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">活动日期</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker id="actDate" mode="date" value="{{date}}" start="{{date}}" bindchange="actDateChange" disabled="{{dateDisabled}}" name="actDate">
+              <view class="weui-input">{{actDate}}</view>
+            </picker>
+          </view>
+        </view>
+
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">活动时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker id="actTime" mode="time" value="{{time}}" start="{{time}}" end="21:01" bindchange="actTimeChange" name="actTime">
+              <view class="weui-input">{{actTime}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">场地名称</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input name="areaName" class="weui-input" placeholder="请输入场地名称" value="{{areaName}}"  bindinput="areaNameInput" />
+          </view>
+          <view class="weui-cell__ft" hidden="{{hideSearch}}">
+            <navigator url="./placeList?sprType={{sprTypes[sprTypeIndex]}}" hover-class="navigator-hover">
+              <!-- <image src="/images/around_default.png" style="width: 20px; height: 20px;">
+              </image> 尽量少用图片文件-->
+              <view class="fa fa-search" style="color:purple"></view>
+            </navigator>
+
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">场地地址</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input name="areaAddress" class="weui-input" placeholder="请输入场地地址" value="{{areaAddress}}"  bindinput="areaAddressInput" />
+          </view>
+        </view>
+      </view>
+
+
+      <view class="weui-cells__title">附加信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">留言信息：</view>
+          </view>
+          <view class="weui-cell__bd">
+            
+            <textarea name="wordsInput" class="weui-textarea" style="height: 3.3em" bindblur="wordsInput" />
+            <view name="leaveMessage" class="weui-textarea-counter">0/50</view>
+          
+          </view>
+        </view>
+      </view>
+      
+
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" formType="submit">确定</button>
+
+      </view>
+
+    </form>
+  </view>
+  <!--page__bd-->
+</view>
+<!--page-->

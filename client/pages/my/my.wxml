@@ -1,0 +1,111 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center">
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="color:OrangeRed;text-align:center" bindtap="editDescription">
+
+        <view class="" style="color:Orange">{{userInfo.description}}
+          <view class="fa fa-pencil-square-o" style="color:white"></view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="swiper-tab">
+        <navigator class="swiper-tab-list" url="../../pages/my/myFriends" hover-class="navigator-hover">我的好友</navigator>
+        |
+        <navigator class="swiper-tab-list" url="../../pages/my/myFriends" hover-class="navigator-hover">最近来访</navigator>
+        |
+        <navigator class="swiper-tab-list" url="../../pages/my/myNewFriends" hover-class="navigator-hover">新的好友</navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-flex">
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
+      <swiper-item>
+        <scroll-view scroll-y style="height:{{winHeight}}px">
+          <view class="page_list" wx:for="{{friendInfo}}" wx:key="openId">
+            <view class="weui-flex lineB">
+              <view>
+                <view class="fa fa-bullhorn" style="color:purple"></view> {{item.nickName}}:
+              </view>
+              <view class="weui-flex__item">
+                {{item.message}}
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y style="height:{{winHeight}}px">
+          <view class="page_list" wx:for="{{friendList}}" wx:key="openId">
+            <template is="tUserList" data="{{item}}" />
+          </view>
+        </scroll-view>
+      </swiper-item>
+
+    </swiper>
+
+  </view>
+  <view class="page__bd">
+    <view class="weui-cells__title"></view>
+    <view class="weui-cells weui-cells_after-title">
+      <navigator url="myInfo" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="getImgs">
+        <view class="weui-cell__hd">
+          <view class="fa fa-user-circle" style="margin-right:10px;"></view>
+        </view>
+        <view class="weui-cell__bd">个人信息</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">基本信息</view>
+      </navigator>
+      <navigator url="myActive" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="fa fa-tasks" style="margin-right:10px;"></view>
+        </view>
+        <view class="weui-cell__bd">我的运动</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">说明文字</view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="getImgs">
+        <view class="weui-cell__hd">
+          <view class="fa fa-suitcase" style="margin-right:10px;"></view>
+        </view>
+        <view class="weui-cell__bd">我的圈子</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">说明文字</view>
+      </navigator>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="getImgs">
+        <view class="weui-cell__hd">
+          <view class="fa fa-envelope-open" style="margin-right:10px;"></view>
+        </view>
+        <view class="weui-cell__bd">系统消息</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">说明文字</view>
+      </navigator>
+      <navigator url="../common/bbs" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="getImgs">
+        <view class="weui-cell__hd">
+          <view class="fa fa-commenting" style="margin-right:10px;"></view>
+        </view>
+        <view class="weui-cell__bd">好友留言</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">留言板</view>
+      </navigator>
+    </view>
+
+    <view class="weui-cells__title">设置</view>
+    <view class="weui-cells weui-cells_after-title">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="getSystemInfo">
+        <view class="weui-cell__hd">
+          <view class="fa fa-cog"></view>
+        </view>
+        <view class="weui-cell__bd"></view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">查看</view>
+      </navigator>
+    </view>
+  </view>
+
+</view>

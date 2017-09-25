@@ -1,0 +1,105 @@
+<!--pages/my/myInfo.wxml-->
+<view class="page">
+  <view class="page__hd">
+  </view>
+  <view class="page__bd">
+    <view class="weui-panel">
+      <view class="weui-panel__hd"></view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_small-appmsg">
+          <view class="weui-cells weui-cells_in-small-appmsg">
+            <navigator url="editNickName" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>昵称</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.nickName}}</view>
+            </navigator>
+            <navigator url='editType' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>运动类型</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">
+                {{userInfo.favType1}}
+              </view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>性别</view>
+              </view>
+              <view class="weui-cell__ft">{{userInfo.gender}}</view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>城市</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.city}}</view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>省份</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.province}}</view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__hd">
+                <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+              </view>
+              <view class="weui-cell__bd weui-cell_primary">
+                <view>国家</view>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.country}}</view>
+            </navigator>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-panel">
+    <view class="weui-panel__hd">注册登录信息</view>
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_small-appmsg">
+        <view class="weui-cells weui-cells_in-small-appmsg">
+
+          <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+              <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+            </view>
+            <view class="weui-cell__bd weui-cell_primary">
+              <view>首次登录时间</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.firstLoginTime}}</view>
+          </navigator>
+          <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+              <image src="{{icon20}}" style="width: 20px;height: 20px;margin-right: 5px" />
+            </view>
+            <view class="weui-cell__bd weui-cell_primary">
+              <view>上次登录时间</view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{userInfo.lastLoginTime}}</view>
+          </navigator>
+
+         
+      </view>
+    </view>
+  </view>
+</view>
+
+</view>

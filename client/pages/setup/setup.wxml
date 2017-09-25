@@ -1,0 +1,30 @@
+<!--pages/setup/setup.wxml-->
+<view class="page setup" style="width:{{windowWidth}}px;height:{{windowHeight}}px;">
+
+  <view class="weui-flex">
+    <view class="weui-flex__item setupTitle">
+      小熊运动欢迎您！
+    </view>
+  </view>
+
+
+  <view class="weui-flex">
+    <view class="weui-flex__item setupTextGreen">
+      {{userInfo.nickName}},欢迎来到小熊运动
+    </view>
+  </view>
+  <view class="weui-flex">
+   
+    <view class="weui-flex__item setupTextGreen">
+    设置个昵称吧
+      <input type="text" value="{{userInfo.nickName}}" style="border-bottom-style:solid;border-width:1px;border-color:white;"/>
+    </view>
+  </view>
+<view class="setupTextWhite" style="text-align:right;padding-top:5px"> 当然也可以继续使用微信昵称</view>
+
+  <view class="weui-flex">
+    <view class="weui-flex__item setupTitle">
+      下一步
+    </view>
+  </view>
+</view>

@@ -1,0 +1,158 @@
+
+<!--pages/action/selectAction.wxml-->
+<view class="page">
+
+<!--begin-->
+ <view class="page__bd" >
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+
+      <!--活动详情-->
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+          <view class="weui-cells weui-cells_after-title">
+               <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">运动类别</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view id="subject" class="weui-input">{{activeInfo.sprType}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">活动类型</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view id="subject" class="weui-input">{{activeInfo.actType}}</view>
+        </view>
+      </view>
+
+     </view>
+     
+      
+    <view class="weui-cells weui-cells_after-title">
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">活动周期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">{{activeInfo.actTerm}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">活动日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">{{activeInfo.actDate}}</view>
+        </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">活动时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-input">{{activeInfo.actTime}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">场地名称</view>
+        </view>
+        <view class="weui-cell__ft">
+          <view class="weui-input">{{activeInfo.areaName}}</view>
+        </view>
+      </view>
+       <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">场地地址</view>
+        </view>
+        <view class="weui-cell__ft">
+          <view class="weui-input">{{activeInfo.areaAddress}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">人数限制</view>
+        </view>
+        <view class="weui-cell__ft">
+          <view class="weui-input">{{activeInfo.planPeople}}</view>
+        </view>
+      </view>
+      
+       <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">费用类型</view>
+        </view>
+        <view class="weui-cell__ft">
+          <view class="weui-input">{{activeInfo.feeType}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">发起人信用</view>
+        </view>
+        <view class="weui-cell__ft">
+          <view class="weui-input">{{activeInfo.pubCredit}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="留言" style="height: 3.3em" />
+          <view class="weui-textarea-counter">{{activeInfo.words}}</view>
+        </view>
+      </view>
+<!--
+我要参加按钮-->
+<button type="primary" size="default" bindtap="addAct" style="border-right:1px">我要参加</button>
+
+          </view>
+        </view>
+
+
+        <!--参加人员-->
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
+          <view class="weui-cells weui-cells_after-title">
+            <view class="table" >
+      <view class="tr bg-w">
+        <view class="th">参与人</view>
+        <view class="th">报名时间</view>
+        <view class="th">留言</view>
+      </view>
+      <block wx:for="{{joinners}}" wx:key="index">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td">{{joinners[index].username}}</view>
+          <view class="td">{{joinners[index].joinDate}}</view>
+          <view class="td">{{joinners[index].remark}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td">{{joinners[index].username}}</view>
+          <view class="td">{{joinners[index].joinDate}}</view>
+          <view class="td">{{joinners[index].remark}}</view>
+        </view>
+      </block>
+    </view>
+          </view>
+        </view>
+
+      
+     </view><!--page__tab-->
+    </view><!--page__bd-->
+</view><!--page-->

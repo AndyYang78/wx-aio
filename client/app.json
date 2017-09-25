@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/action/actionList",
+    "pages/action/createAction",
+    "pages/action/selectAction",
+    "pages/action/placeList",
+    "pages/friends/friend/friendList",
+    "pages/friends/friend/friendDetail",
+    "pages/friends/friend/friendAct",
+    "pages/friends/friend/applyFriend",
+    "pages/friends/friend/map",
+    "pages/discover/discover",
+    "pages/users/user/userDetail",
+    "pages/place/placeDetail",
+    "pages/my/my",
+    "pages/my/myActive",
+    "pages/my/myFriends",
+    "pages/my/myNewFriends",
+    "pages/my/myInfo",
+    "pages/my/editNickName",
+    "pages/my/editDesc",
+    "pages/my/editType",
+    "pages/common/editValue",
+    "pages/common/sportLevel",
+    "pages/common/bbs",
+    "pages/setup/setup",
+    "pages/library/library",
+    "pages/library/video"
+  ],
+  "window": {
+    "backgroundTextStyle": "white",
+    "navigationBarBackgroundColor": "purple",
+    "navigationBarTitleText": "BearSports",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "selectedIconPath": "images/home.png",
+        "iconPath": "images/home_default.png",
+        "pagePath": "pages/action/actionList",
+        "text": "运动"
+      },
+      {
+        "selectedIconPath": "images/cycle.png",
+        "iconPath": "images/cycle_default.png",
+        "pagePath": "pages/discover/discover",
+        "text": "发现"
+      },
+      {
+        "selectedIconPath": "images/my.png",
+        "iconPath": "images/my_default.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  }
+}

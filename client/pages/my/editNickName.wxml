@@ -1,0 +1,17 @@
+<!--pages/my/editNickName.wxml-->
+<view class="page">
+<view class="page__hd">
+</view>
+<view class="page__bd">
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view class="section">
+  你可以取一个不同于微信的昵称:
+  <input name="nickName" type="text" placeholder="" value="{{nickName}}" style="border-bottom-style:solid;border-width:1px;border-color:gray;"/>
+</view>
+
+<button formType="submit" type="primary"> 确认 </button>
+
+</form>
+</view>
+</view>
+

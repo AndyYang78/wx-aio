@@ -1,0 +1,97 @@
+<import src="/common/template.wxml" />
+<view class="page">
+  <view class="page__hd">
+
+  </view>
+  <view class="page__bd">
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center">
+        <image class="userinfo-avatar" src="{{person.avatarUrl}}" background-size="cover"></image>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="text-align:center">
+        <text class="userinfo-nickname">{{person.nickName}}</text>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" style="color:OrangeRed;text-align:center" bindtap="editDescription">
+        <view class="" style="color:Orange">{{person.description}}
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="weui-cells__title">等级信息</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view></view>
+          <navigator url="../../common/sportLevel" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">Lv.</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{person.level}}</view>
+          </navigator>
+          <navigator url="../../common/sportLevel" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd fa fa-flash"> 运动等级</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{person.level}}</view>
+          </navigator>
+          <navigator url="../../common/sportLevel" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd fa fa-vcard-o"> 信用等级</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{person.level}}</view>
+          </navigator>
+        </view>
+
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">加入时间：</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input type="text" name="input" class="weui-input" value="{{person.firstLoginTime}}" />
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">最近登陆：</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input type="text" name="input" class="weui-input" value="{{person.lastLoginTime}}" />
+      </view>
+    </view>
+
+    <view class="weui-panel weui-panel_access">
+      <!--<view class="weui-panel__hd">文字组合列表</view>-->
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text">自我介绍</view>
+          <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="weui-cells__title">运动信息</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view></view>
+          <navigator url="showFriendAct?openId={{person.openId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">参加的活动</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{myActiveCount}}</view>
+          </navigator>
+
+        </view>
+
+      </view>
+    </view>
+    <view class="weui-cells__title">留言信息</view>
+    <scroll-view scroll-y style="height:200px">
+      <view class="page_list" wx:for="{{bbs}}">
+        <template is="tBbs" data="{{item}}" />
+      </view>
+    </scroll-view>
+<button type="primary" bindtap="submit">邀约</button>
+    <!-- <view class="btn-area bottomButton">
+      <button type="primary" bindtap="submit">邀约</button>
+    </view> -->
+  </view>
+</view>

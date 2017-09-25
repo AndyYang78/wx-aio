@@ -1,0 +1,23 @@
+/* pages/setup/setup.wxss */
+.setup {
+  background-color: #808080;
+  color:Chartreuse;
+
+}
+
+.setupTitle{
+  text-align:center;
+  font-size:xx-large;
+}
+
+.setupTextWhite{
+  color:white;
+  padding: 30px;
+  font-size:medium;
+}
+
+.setupTextGreen{
+  color:Chartreuse;
+  padding: 30px;
+  font-size:x-large;
+}

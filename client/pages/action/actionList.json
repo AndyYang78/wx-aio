@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "purple",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "Bear Sports",
+  "backgroundColor": "purple",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

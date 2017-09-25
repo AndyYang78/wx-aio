@@ -1,0 +1,57 @@
+/* pages/my/my.wxss */
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 250rpx;
+  height: 250rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #fff;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.weui-tab__content{
+    padding-top: 60px;
+    text-align: center;
+}
+
+.swiper-tab{
+  width: 100%; 
+  border-bottom: 2rpx solid #777777; 
+  text-align: center; 
+  line-height: 80rpx;
+}
+.swiper-tab-list{
+  font-size: 35rpx; 
+  display: inline-block; 
+  width: 30%; 
+  color: #fff; 
+}
+.on{
+  color: #fff; 
+  font-weight:bold;
+  border-bottom: 5rpx solid #fff;
+}
+.swiper-box{ 
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+ }
+ .navigator-hover {
+    color:blue;
+}
+/** 自定义其他点击态样式类 **/
+.other-navigator-hover {
+    color:red;
+}

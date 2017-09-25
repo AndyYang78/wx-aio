@@ -1,0 +1,16 @@
+<!--pages/my/editType.wxml-->
+<view class="page">
+<view class="page__hd">
+</view>
+<view class="page__bd">
+<form bindsubmit="formSubmit" bindreset="formReset">
+<view class="section">
+  你最喜欢的运动:
+  <input name="favType1" type="text" placeholder="" value="{{userInfo.favType1}}" style="border-bottom-style:solid;border-width:1px;border-color:gray;"/>
+</view>
+
+<button formType="submit" type="primary"> 确认 </button>
+
+</form>
+</view>
+</view>

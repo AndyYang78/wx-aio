@@ -1,0 +1,162 @@
+<template name="tUserList">
+  <view class="weui-panel weui-panel_access">
+    <view class="weui-panel__bd">
+      <navigator url="../users/user/userDetail?openId={{item.openId}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding:5px">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{item.avatarUrl}}" />
+        </view>
+        <view class="wseui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">
+            <view class="weui-flex">
+              <view class="weui-flex__item" style="">
+              <view wx:if="{{item.gender == 0}}" style="color:Pink;" class = "fa fa-female"></view>
+              <view wx:if="{{item.gender == 1}}" style="color:SkyBlue;" class = "fa fa-male"></view>
+              {{item.nickName}}</view>              
+              <view style="">{{item.distance.text}}</view>
+              <view style="color:red;">:{{item.lastLoginTime}}</view>
+            </view>
+             
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <!-- <view class="" style="background-color:DimGray;color:white;width:120rpx">Lv:{{item.level}}</view> -->
+                <view class="" style="">Lv:{{item.level}}</view>
+              </view>{{item.favType1}}
+              <!-- <view class="weui-flex__item" style="">
+                <view class="fa fa-flash" style="color:Purple"></view> {{item.level}}
+              </view>
+              <view class="weui-flex__item" style="">
+                <view class="fa fa-vcard-o" style="color:Purple"></view> {{item.creditLevel}}
+              </view>               -->
+            </view>
+
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <!-- <view class="placeholder">上次登陆时间:{{item.lastLoginTime}}</view> -->
+              </view>
+            </view>
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">{{item.desc}}</view>
+              </view>
+            </view>
+          </view>
+          </view>
+          <view class="weui-media-box__desc" style=""> 
+        </view>
+      </navigator>
+      <view class="weui-media-box__desc">
+      
+      <view class="weui-flex">
+              <view class="weui-flex__item">{{item.description}}</view>        
+            </view>
+      </view>
+    </view>
+  </view>
+</template>
+<template name="tPlaceList">
+  <view class='place-container weui-panel weui-panel_access'>
+    <navigator url="../../place/placeDetail?id={{item.id}}&title={{item.title}}&address={{item.address}}&telephone={{item.telephone}}&price={{item.price}}&distance={{item.distance}}&overall_rating={{item.overall_rating}}&service_rating={{item.service_rating}}" class=" weui-media-box weui-media-box_appmsg"
+    hover-class="weui-cell_active ">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg ">
+        <image class="weui-media-box__thumb " src="http://pic.58pic.com/58pic/13/14/14/21s58PICdGy_1024.jpg " />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg ">
+        <view class="weui-media-box__title ">{{item.title}}</view>
+         <view class="weui-media-box__desc " wx:if="{{item.distance<1000}}">{{item.distance}}米</view>
+        <view class="weui-media-box__desc " wx:else>{{item.distance/1000}} 千米</view>
+        <view class="weui-media-box__desc ">地址：{{item.address}}</view>
+      </view>
+    </navigator>
+  </view>
+</template>
+<template name="tFriendList">
+  <view class='place-container weui-panel weui-panel_access'>
+    <view class="weui-panel__bd ">
+      <navigator url="../../friends/friend/friendDetail?id={{item._id}}" class="weui-media-box weui-media-box_appmsg " hover-class="weui-cell_active " style="padding:5px">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg ">
+          <image class="weui-media-box__thumb " src="http://www.qqleju.com/uploads/allimg/160622/22-101309_76.jpg " />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg ">
+          <view class="weui-media-box__title ">
+            <view class="weui-flex ">
+              <view class="weui-flex__item " style="font-weight:bold">
+                <view>{{item.name}}</view>
+              </view>              
+              <view>{{item.type}}</view>            
+            </view>
+            <view class="weui-flex ">
+              <view class="weui-flex__item ">
+                <view>熊友圈人数：{{item.count}}</view>
+              </view>
+                <view>等级：{{item.level}}</view>
+            </view> 
+          </view>
+          <view class="weui-media-box__desc ">
+          <view class="weui-flex ">
+              <view class="weui-flex__item ">
+                <view style="color:blue;"><view style="color:red;" class="fa fa-home"></view> {{item.home}}</view>
+              </view>
+            </view>
+            </view>
+        </view>
+      </navigator>
+      <view class="weui-media-box__desc">
+      <view class="weui-flex">
+              <view class="weui-flex__item ">
+                <view>{{item.desc}}</view>
+              </view>
+            </view>
+            </view>
+    </view>
+  </view>
+</template>
+
+<template name="tActive">
+  <view class='place-container weui-panel weui-panel_access'>
+    <view  class=" weui-media-box weui-media-box_appmsg "
+    hover-class="weui-cell_active "  >
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg ">
+        <image class="weui-media-box__thumb " src="http://pic.58pic.com/58pic/13/14/14/21s58PICdGy_1024.jpg " />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg ">
+        <view class="weui-media-box__title ">{{item.title}}</view>
+        <view class="weui-media-box__desc ">{{item.distance/1000}} 千米</view>
+        <view class="weui-media-box__desc ">地址：{{item.address}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="tBbs">
+  <view class="weui-panel">
+      <!-- <view class="weui-panel__hd">文字列表附来源</view> -->
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text">
+          <view class="weui-flex">
+            <view class="weui-flex__item"></view>
+          </view>
+          </view>
+          <view class="weui-media-box__desc" style="color:black">{{item.content}}</view>
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta">{{item.author}}</view>           
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra"><view class="weui-media-box__info__meta">{{item.time}}</view></view>
+          </view>
+        </view>
+      </view>
+    </view>
+</template>
+
+<!--加载更多 模版-->
+<template name="loading">
+    <view class="weui-loadmore">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+</template>
+
+<template name="nodata">
+    <view class="weui-loadmore">
+        <view class="weui-loadmore__tips" style="color:#888">就这么多了</view>
+    </view>
+</template>

@@ -1,0 +1,72 @@
+<!--pages/my/myActive.wxml-->
+<!--<text>pages/my/myActive.wxml</text>-->
+
+<view class="page">
+
+<!--begin-->
+ <view class="page__bd" >
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+
+      <!--发起的活动-->
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+        <view class="weui-cells weui-cells_after-title">
+            <view class="page_list" wx:for="{{activeInfo}}" wx:for-index="index">
+              <view class='place-container weui-panel weui-panel_access'>
+                <navigator url="../action/selectAction?actId={{activeInfo[index].actId}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                  <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                    <image class="weui-media-box__thumb" src="http://pic.58pic.com/58pic/13/14/14/21s58PICdGy_1024.jpg" />
+                  </view>
+                  <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-cell__bd" hidden="false">{{activeInfo[index].actId}}</view>
+                    <view class="weui-media-box__title">{{activeInfo[index].sprType}}  |  {{activeInfo[index].areaName}}</view>
+                    <view class="weui-media-box__desc">{{activeInfo[index].actType}}  -  {{activeInfo[index].areaAddress}}</view>
+                    <view class="weui-media-box__desc">{{activeInfo[index].actDate}}  |  {{activeInfo[index].actTime}}</view>
+                  </view>
+                  
+                </navigator>
+              </view>
+            </view>
+          </view>
+
+
+          </view>
+        </view>
+
+
+        <!--参加的活动-->
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
+          <view class="weui-cells weui-cells_after-title">
+            <view class="page_list" wx:for="{{activeInfo}}" wx:for-index="index">
+              <view class='place-container weui-panel weui-panel_access'>
+                <navigator url="../action/selectAction?actId={{activeInfo[index]._id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                  <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                    <image class="weui-media-box__thumb" src="http://pic.58pic.com/58pic/13/14/14/21s58PICdGy_1024.jpg" />
+                  </view>
+                  <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-cell__bd" hidden="false">{{activeInfo[index]._id}}</view>
+                    <view class="weui-media-box__title">{{activeInfo[index].sprType}}</view>
+                    <view class="weui-media-box__desc">{{activeInfo[index].actType}}</view>
+                  </view>
+                </navigator>
+              </view>
+            </view>
+          </view>
+
+      
+  </view>
+
+
+     </view>  <!--page_tab-->
+    </view><!--page__bd-->
+</view><!--page-->

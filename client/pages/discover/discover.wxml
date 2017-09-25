@@ -1,0 +1,46 @@
+<import src="/common/template.wxml" />
+<view class="page">
+  <view class="page__hd">
+    <view class="location ellipsis">
+      <view class="fa fa-map-marker"></view>
+      {{cityName}}
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-flex">
+      <view class="swiper-tab">
+        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNavi">好友动态</view>
+        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNavi">附近的人</view>
+
+      </view>
+    </view>
+    <view class="weui-flex">
+      <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
+        <swiper-item>
+          <scroll-view scroll-y style="height:{{winHeight}}px">
+            <view class="page_list" wx:for="{{friendInfo}}" wx:key="openId">
+              <view class="weui-flex lineB">
+                <view>
+                  <view class="fa fa-bullhorn" style="color:purple"></view> {{item.nickName}}:
+                </view>
+                <view class="weui-flex__item">
+                  {{item.message}}
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item>
+          <scroll-view scroll-y style="height:{{winHeight}}px">
+            <view class="page_list" wx:for="{{friendList}}" wx:key="openId">
+              <template is="tUserList" data="{{item}}" />
+            </view>
+          </scroll-view>
+        </swiper-item>
+
+      </swiper>
+
+    </view>
+  </view>
+
+</view>

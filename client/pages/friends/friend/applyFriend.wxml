@@ -1,0 +1,35 @@
+<!--pages/friends/friend/applyFriend.wxml-->
+<view class="page">
+  <view class="page__hd">
+
+  </view>
+  <view class="page__bd">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="weui-cells__title">你需要发送给对方验证信息，等待对方通过。</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input name="applyMessage" class="weui-input" bindinput='applyMessage' placeholder="请输入验证信息" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="weui-cells__title">为你的好友设置备注</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入备注" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <button class="bottomButton" formType="submit" type="primary"> 发送 </button>
+    </form>
+  </view>
+</view>
