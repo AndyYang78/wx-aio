@@ -181,25 +181,25 @@ Page({
     var iData ={};
     iData.operationCode = "UF"
     wx.request({
-      url: app.gData.iServerUrl + '/bearsport/service/user/userMaintain',      
+      url: app.gData.iServerUrl + '/discoverNearby',      
       data: iData,
       //method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      method: 'POST',
+      method: 'GET',
       // header: {}, // 设置请求的 header
       header: { 'content-type': 'application/json' },
       success: function (res) {
         console.log("获取熊友列表信息：", res.data);
         //var rlt = res.data.listData;  //result
         //console.log("rlt", rlt);
-        if (res.data.result=="00000"){
+        if (res.data.code=="0"){
 
-          for (var i = 0; i < res.data.listData.length; i++) {
+          for (var i = 0; i < res.data.data.length; i++) {
 
-          res.data.listData[i].lastLoginTime =  util.formatTimestamp(res.data.listData[i].lastLoginTime);
+            res.data.data[i].LAST_LOGIN_TIME = util.formatTimestamp(res.data.data[i].LAST_LOGIN_TIME);
           if (dest!=""){
             dest = dest+"|"
           }
-          dest = dest + res.data.listData[i].location.latitude + "," + res.data.listData[i].location.longitude
+          dest = dest + res.data.data[i].LATITUDE + "," + res.data.data[i].LONGTITUDE;
            }
         }
         console.log("location345", dest);
@@ -208,7 +208,7 @@ Page({
           destinations: dest
         });
         that.setData({
-          friendList: res.data.listData
+          friendList: res.data.data
         });
 
         //计算自己与好友间的距离
