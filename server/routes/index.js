@@ -34,6 +34,7 @@ router.post('/message', controllers.message.post)
 
 //用户
 router.get('/userFindAll', controllers.user.userFindAll)
+router.get('/discoverNearby', controllers.user.discoverNearby)
 router.get('/userList', controllers.user.userList)
 router.get('/userFindByOpenId', controllers.user.userFindByOpenId)
 
