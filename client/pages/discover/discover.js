@@ -245,18 +245,26 @@ Page({
         // success 
         console.log("ret", res.data);
         var status = res.data.status;
-        var rst = res.data.result;
-        console.log("rst",rst);
+      //  var rst = res.data.result;
+      //  console.log("rst",rst);
         var listData = that.data.friendList;
+        if (status===0){
+          for (var i = 0; i < rst.length; i++) {
+            listData[i].distance = rst[i].distance;
+          }
 
-        for(var i=0;i<rst.length;i++){
-          listData[i].distance = rst[i].distance;
+          console.log("listData111", listData);
+          that.setData({
+            friendList: listData
+          });
+        }else{
+          wx.showToast({
+            title: '定位失败',
+            icon: 'loading',
+            duration: 1000
+          })
         }
-
-        console.log("listData111", listData);
-        that.setData({
-          friendList: listData
-        });
+      
       },
       fail: function () { },
       complete: function () { }
