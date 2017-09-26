@@ -199,7 +199,7 @@ Page({
           if (dest!=""){
             dest = dest+"|"
           }
-          dest = dest + res.data.data[i].latitude + "," + res.data.data[i].longtitude;
+          dest = dest + res.data.data[i].latitude + "," + res.data.data[i].longitude;
            }
         }
         console.log("location345", dest);
