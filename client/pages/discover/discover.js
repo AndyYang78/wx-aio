@@ -124,8 +124,10 @@ Page({
         cityName: app.gData.cityName
       })
       this.setData({
-        origins: app.gData.latitude + "," + app.gData.longitude
+        origins: app.gData.location.latitude + "," + app.gData.location.longitude
       });
+
+      console.log("app.gData" , app.gData);
   },
 
   onReady: function () {
@@ -245,8 +247,8 @@ Page({
         // success 
         console.log("ret", res.data);
         var status = res.data.status;
-      //  var rst = res.data.result;
-      //  console.log("rst",rst);
+        var rst = res.data.result;
+        console.log("rst",rst);
         var listData = that.data.friendList;
         if (status===0){
           for (var i = 0; i < rst.length; i++) {
