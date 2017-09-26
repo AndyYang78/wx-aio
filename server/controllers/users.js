@@ -35,9 +35,9 @@ async function userLogin(ctx, next) {
   await mysql('t_user')
   .where('openId', ctx.query.openId)
   .update({
-    LATITUDE: ctx.query.latitude,
-    LONGITUDE: ctx.query.longitude,
-    LOGIN_CITY:ctx.query.city,
+    latitude: ctx.query.latitude,
+    longitude: ctx.query.longitude,
+    loginCity:ctx.query.city,
     //LEVEL:   
   })
   //.increment('LEVEL', 1)

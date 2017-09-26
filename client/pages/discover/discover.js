@@ -124,8 +124,10 @@ Page({
         cityName: app.gData.cityName
       })
       this.setData({
-        origins: app.gData.latitude + "," + app.gData.longitude
+        origins: app.gData.location.latitude + "," + app.gData.location.longitude
       });
+
+      console.log("app.gData" , app.gData);
   },
 
   onReady: function () {
@@ -231,7 +233,7 @@ Page({
     console.log("aaa", that.data.destinations);
     console.log("bbb", that.data.origins)
     wx.request({
-      url: 'http://api.map.baidu.com/routematrix/v2/driving?',
+      url: 'http://api.map.baidu.com/routematrix/v2/riding?',
       data: {
         output: "json",
         origins: that.data.origins,    //坐标格式为：lat<纬度>,lng<经度>|lat<纬度>,lng<经度>  多个用|分开,最多传50个点，且起终点乘积不超过50
@@ -245,8 +247,8 @@ Page({
         // success 
         console.log("ret", res.data);
         var status = res.data.status;
-      //  var rst = res.data.result;
-      //  console.log("rst",rst);
+        var rst = res.data.result;
+        console.log("rst",rst);
         var listData = that.data.friendList;
         if (status===0){
           for (var i = 0; i < rst.length; i++) {
