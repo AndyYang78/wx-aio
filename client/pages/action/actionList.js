@@ -38,8 +38,8 @@ Page({
 
     that.setData(
       {
-        city: app.gData.cityName,
-        district: app.gData.district
+        city: app.gData.location.city,
+        district: app.gData.location.district
       })
     wx.request({
       url: 'https://yfaq43ae.qcloud.la/weapp/userFindAll',
@@ -60,8 +60,8 @@ Page({
     // 页面渲染完成
     this.setData(
       {
-        city: app.gData.cityName,
-        district: app.gData.district
+        city: app.gData.location.city,
+        district: app.gData.location.district
       })
   },
   onShow: function () {
@@ -69,8 +69,8 @@ Page({
 
     this.setData(
       {
-        city: app.gData.cityName,
-        district: app.gData.district
+        city: app.gData.location.city,
+        district: app.gData.location.district
       })
 
     this.actionList();
@@ -103,7 +103,7 @@ Page({
   actionList: function () {
     var that = this;
     wx.request({
-      url: app.gData.iServerUrl+'/action',
+      url: app.gData.iServerUrl +'/actionFindAll',
       
       header: {
         'content-type': 'application/json'
@@ -111,7 +111,7 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log("message", res.data);
-        let actList = res.data.listData;
+        let actList = res.data.data;
         for (var i = 0; i < actList.length; i++) {
           actList[i].actDate = util.formatOnlyDate(new Date(actList[i].actDate), "-")
         }

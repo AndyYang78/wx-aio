@@ -32,12 +32,14 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 
+//登录
+router.get('/userLogin', controllers.users.userLogin)
 //用户
-router.get('/userFindAll', controllers.user.userFindAll)
-router.get('/discoverNearby', controllers.user.discoverNearby)
-router.get('/userList', controllers.user.userList)
-router.get('/userFindByOpenId', controllers.user.userFindByOpenId)
+router.get('/userFindAll', controllers.users.userFindAll)
+router.get('/discoverNearby', controllers.users.discoverNearby)
+router.get('/userList', controllers.users.userList)
+router.get('/userFindByOpenId', controllers.users.userFindByOpenId)
 
 //活动
-router.get('/action', controllers.action.findAll)
+router.get('/actionFindAll', controllers.action.actionFindAll)
 module.exports = router
