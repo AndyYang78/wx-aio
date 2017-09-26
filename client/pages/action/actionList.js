@@ -103,7 +103,7 @@ Page({
   actionList: function () {
     var that = this;
     wx.request({
-      url: app.gData.iServerUrl+'/action',
+      url: app.gData.iServerUrl +'/actionFindAll',
       
       header: {
         'content-type': 'application/json'
@@ -111,7 +111,7 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log("message", res.data);
-        let actList = res.data.listData;
+        let actList = res.data.data;
         for (var i = 0; i < actList.length; i++) {
           actList[i].actDate = util.formatOnlyDate(new Date(actList[i].actDate), "-")
         }
