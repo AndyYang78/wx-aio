@@ -81,7 +81,7 @@ App({
         
         console.log("location:", that.gData.location);
         that.loadCity(that.gData.location.longitude, that.gData.location.latitude);
-        that.updateUserBiz();
+        
         //that.loadCity(that.gData.longitude, that.gData.latitude)
       },
       fail: function (res) {
@@ -94,9 +94,34 @@ App({
     
   },
 
+ 
+  loadCity: function (longitude, latitude) {
+    console.log("获取登录城市信息")
+    var that = this
+    wx.request({
+      url: 'https://api.map.baidu.com/geocoder/v2/?ak=' + ak + '&location=' + latitude + ',' + longitude + '&output=json',
+      data: {},
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // success    
+        console.log("百度定位信息", res);
+        var city = res.data.result.addressComponent.city;
+        var district = res.data.result.addressComponent.district;
+        that.gData.location.city = city;
+        that.gData.location.district = district;
+        that.updateUserBiz();
+      },
+      fail: function () {
+        that.gData.cityName = "获取定位失败";
+      },
+
+    })
+  },
   updateUserBiz: function () {
     var that = this;
-    console.log("更新登录用户业务信息",that.gData);
+    console.log("更新登录用户业务信息", that.gData);
     wx.request({
       url: that.gData.iServerUrl + '/userLogin',
       data: {
@@ -117,27 +142,4 @@ App({
     })
   },
 
-  loadCity: function (longitude, latitude) {
-    console.log("获取登录城市信息")
-    var that = this
-    wx.request({
-      url: 'https://api.map.baidu.com/geocoder/v2/?ak=' + ak + '&location=' + latitude + ',' + longitude + '&output=json',
-      data: {},
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        // success    
-        console.log("百度定位信息", res);
-        var city = res.data.result.addressComponent.city;
-        var district = res.data.result.addressComponent.district;
-        that.gData.location.city = city;
-        that.gData.location.district = district;
-      },
-      fail: function () {
-        that.gData.cityName = "获取定位失败";
-      },
-
-    })
-  }
 });

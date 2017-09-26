@@ -41,8 +41,7 @@ router.get('/userList', controllers.users.userList)
 router.get('/userFindByOpenId', controllers.users.userFindByOpenId)
 
 //活动
-router.get('/action', controllers.action.findAll)
-
+router.get('/actionFindAll', controllers.action.actionFindAll)
 
 //评论
 router.get('/findCommentByActId', controllers.comment.findCommentByActId)

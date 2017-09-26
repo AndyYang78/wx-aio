@@ -93,7 +93,7 @@
               <view class="weui-flex">
 
                 <view class="weui-flex__item" style="">
-                  预估费用： {{item. feeEst}}元
+                  预估费用： {{item.fee}}元
                 </view>
                 <view style="">
                   {{item.feeType}}

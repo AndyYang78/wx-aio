@@ -1,9 +1,13 @@
 
+const { mysql } = require('../qcloud')
 
-async function findAll(ctx, next) {
-  ctx.state.data = { msg: 'Hello World' }
+async function actionFindAll(ctx, next) {
+  console.log("actionFindAll_ctx:", ctx);
+  await mysql('t_activity').then(function (data) {
+    ctx.state.data = data;
+  })
 }
 
   module.exports = {
-    findAll
+    actionFindAll
   }
