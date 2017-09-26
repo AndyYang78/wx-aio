@@ -233,7 +233,7 @@ Page({
     console.log("aaa", that.data.destinations);
     console.log("bbb", that.data.origins)
     wx.request({
-      url: 'http://api.map.baidu.com/routematrix/v2/driving?',
+      url: 'http://api.map.baidu.com/routematrix/v2/riding?',
       data: {
         output: "json",
         origins: that.data.origins,    //坐标格式为：lat<纬度>,lng<经度>|lat<纬度>,lng<经度>  多个用|分开,最多传50个点，且起终点乘积不超过50
