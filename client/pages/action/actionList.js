@@ -38,8 +38,8 @@ Page({
 
     that.setData(
       {
-        city: app.gData.cityName,
-        district: app.gData.district
+        city: app.gData.location.city,
+        district: app.gData.location.district
       })
     wx.request({
       url: 'https://yfaq43ae.qcloud.la/weapp/userFindAll',
@@ -60,8 +60,8 @@ Page({
     // 页面渲染完成
     this.setData(
       {
-        city: app.gData.cityName,
-        district: app.gData.district
+        city: app.gData.location.city,
+        district: app.gData.location.district
       })
   },
   onShow: function () {
@@ -69,8 +69,8 @@ Page({
 
     this.setData(
       {
-        city: app.gData.cityName,
-        district: app.gData.district
+        city: app.gData.location.city,
+        district: app.gData.location.district
       })
 
     this.actionList();
