@@ -42,4 +42,8 @@ router.get('/userFindByOpenId', controllers.users.userFindByOpenId)
 
 //活动
 router.get('/action', controllers.action.findAll)
+
+
+//评论
+router.get('/findCommentByActId', controllers.comment.findCommentByActId)
 module.exports = router
