@@ -1,26 +1,26 @@
 <template name="tUserList">
   <view class="weui-panel weui-panel_access">
     <view class="weui-panel__bd">
-      <navigator url="../users/user/userDetail?openId={{item.OPEN_ID}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding:5px">
+      <navigator url="../users/user/userDetail?openId={{item.openId}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding:5px">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="{{item.AVATAR_URL}}" />
+          <image class="weui-media-box__thumb" src="{{item.avatarUrl}}" />
         </view>
         <view class="wseui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title">
             <view class="weui-flex">
               <view class="weui-flex__item" style="">
-              <view wx:if="{{item.GENDER == 0}}" style="color:Pink;" class = "fa fa-female"></view>
-              <view wx:if="{{item.GENDER == 1}}" style="color:SkyBlue;" class = "fa fa-male"></view>
-              {{item.NICK_NAME}}</view>              
+              <view wx:if="{{item.gender == 0}}" style="color:Pink;" class = "fa fa-female"></view>
+              <view wx:if="{{item.gender == 1}}" style="color:SkyBlue;" class = "fa fa-male"></view>
+              {{item.nickName}}</view>              
               <view style="">{{item.distance.text}}</view>
-              <view style="color:red;">:{{item.LAST_LOGIN_TIME}}</view>
+              <view style="color:red;">:{{item.lastLoginTime}}</view>
             </view>
              
             <view class="weui-flex">
               <view class="weui-flex__item">
                 <!-- <view class="" style="background-color:DimGray;color:white;width:120rpx">Lv:{{item.level}}</view> -->
-                <view class="" style="">Lv:{{item.LEVEL}}</view>
-              </view>{{item.FAVTYPE1}}
+                <view class="" style="">Lv:{{item.level}}</view>
+              </view>{{item.favType1}}
               <!-- <view class="weui-flex__item" style="">
                 <view class="fa fa-flash" style="color:Purple"></view> {{item.level}}
               </view>
@@ -36,7 +36,7 @@
             </view>
             <view class="weui-flex">
               <view class="weui-flex__item">
-                <view class="placeholder">{{item.DESCRIPTION}}</view>
+                <view class="placeholder">{{item.description}}</view>
               </view>
             </view>
           </view>
@@ -47,7 +47,7 @@
       <view class="weui-media-box__desc">
       
       <view class="weui-flex">
-              <view class="weui-flex__item">{{item.DESCRIPTION}}</view>        
+              <view class="weui-flex__item">{{item.description}}</view>        
             </view>
       </view>
     </view>
