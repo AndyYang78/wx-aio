@@ -195,11 +195,11 @@ Page({
 
           for (var i = 0; i < res.data.data.length; i++) {
 
-            res.data.data[i].LAST_LOGIN_TIME = util.formatTimestamp(res.data.data[i].LAST_LOGIN_TIME);
+            res.data.data[i].lastLoginTime = util.formatTimestamp(res.data.data[i].lastLoginTime);
           if (dest!=""){
             dest = dest+"|"
           }
-          dest = dest + res.data.data[i].LATITUDE + "," + res.data.data[i].LONGTITUDE;
+          dest = dest + res.data.data[i].latitude + "," + res.data.data[i].longtitude;
            }
         }
         console.log("location345", dest);
