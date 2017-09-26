@@ -23,7 +23,7 @@ async function userList(ctx, next) {
 
 async function userFindByOpenId(ctx, next) {
   
-  await mysql('t_user').select('*').where('OPEN_ID', ctx.query.openId).then(function (data) {
+  await mysql('t_user').select('*').where('openId', ctx.query.openId).then(function (data) {
     ctx.state.data = data;
   })
   
@@ -33,7 +33,7 @@ async function userLogin(ctx, next) {
   console.log("ctx.query", ctx.query);
   
   await mysql('t_user')
-  .where('OPEN_ID', ctx.query.openId)
+  .where('openId', ctx.query.openId)
   .update({
     LATITUDE: ctx.query.latitude,
     LONGITUDE: ctx.query.longitude,
