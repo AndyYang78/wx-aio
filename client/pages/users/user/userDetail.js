@@ -22,20 +22,18 @@ Page({
 
     //获取用户信息
     var iData = {};
-    iData.operationCode = "UFO";
     iData.openId = this.data.openId;
     wx.request({
-      url: app.gData.iServerUrl + '/bearsport/service/user/userMaintain',
-      data: iData,
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      url: app.gData.iServerUrl + '/userDetail?openId=' + iData.openId,
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       // header: {}, // 设置请求的 header
       success: function (res) {
         console.log("获取用户详情信息：", res);
-        res.data.listData[0].lastLoginTime = util.getLocalTime(res.data.listData[0].lastLoginTime);
-        res.data.listData[0].firstLoginTime = util.getLocalTime(res.data.listData[0].firstLoginTime);
+        res.data.data[0].lastLoginTime = util.getLocalTime(res.data.data[0].lastLoginTime);
+        res.data.data[0].firstLoginTime = util.getLocalTime(res.data.data[0].firstLoginTime);
 
         that.setData({
-          person: res.data.listData[0]
+          person: res.data.data[0]
         });
 
       },

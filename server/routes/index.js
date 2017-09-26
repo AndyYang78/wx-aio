@@ -39,7 +39,7 @@ router.get('/userFindAll', controllers.users.userFindAll)
 router.get('/discoverNearby', controllers.users.discoverNearby)
 router.get('/userList', controllers.users.userList)
 router.get('/userFindByOpenId', controllers.users.userFindByOpenId)
-
+router.get('/userDetail', controllers.userDetail)
 //活动
 router.get('/actionFindAll', controllers.action.actionFindAll)
 
