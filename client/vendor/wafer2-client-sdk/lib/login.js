@@ -113,6 +113,7 @@ var login = function login(options) {
                     var res = data.data
                     if (res.userinfo) {
                       //存储用户信息
+                      app.gData.userInfo = res.userinfo;
                       wx.setStorage({
                         key: res.userinfo.openId,
                         data: res.userinfo
