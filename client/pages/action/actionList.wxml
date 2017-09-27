@@ -38,7 +38,7 @@
       </view>
     </view>
     <view class="weui-flex" style="padding:10px">
-      <view class="weui-flex__item">
+      <view class="weui-flex__item" bindtap="chat">
         <view class="weui-flex" style="text-align:center;font-size:48px;color:Purple">
           <view class="weui-flex__item fa fa-bell"></view>
         </view>

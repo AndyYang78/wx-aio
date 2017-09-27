@@ -132,4 +132,10 @@ Page({
       url: '../library/library'
     })
   },
+
+  chat: function (e) {
+    wx.navigateTo({
+      url: '../chat/chat'
+    })
+  },
 })
