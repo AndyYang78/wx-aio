@@ -1,5 +1,5 @@
 var util = require("../../common/util")
-var app = getApp();
+
 Page({
   data: {
     isShow: false,//控制emoji表情是否显示
@@ -9,7 +9,17 @@ Page({
     disabled: true,
     cfBg: false,
     _index: 0,
-    comments:[],
+    detail:
+    {
+      imgUrl: util.ossAliyuncs + "/images/bg0.jpg",
+      title: "",
+      avatar: util.ossAliyuncs + "/images/banner4.jpg",
+      uName: "雨碎江南",
+      comment: 789,
+      time: "昨天"
+    },
+    comments: [   
+    ],
     emojiChar: "☺-😋-😌-😍-😏-😜-😝-😞-😔-😪-😭-😁-😂-😃-😅-😆-👿-😒-😓-😔-😏-😖-😘-😚-😒-😡-😢-😣-😤-😢-😨-😳-😵-😷-😸-😻-😼-😽-😾-😿-🙊-🙋-🙏-✈-🚇-🚃-🚌-🍄-🍅-🍆-🍇-🍈-🍉-🍑-🍒-🍓-🐔-🐶-🐷-👦-👧-👱-👩-👰-👨-👲-👳-💃-💄-💅-💆-💇-🌹-💑-💓-💘-🚲",
     //0x1f---
     emoji: [
@@ -31,16 +41,24 @@ Page({
     title: ''//页面标题
   },
   onLoad: function (options) {
-    var that = this;
-    that.findCommentByActId();
+    var comment = options.comment;
+    console.log("aa))))", options);
     // 页面初始化 options为页面跳转所带来的参数
-   
-    // videoUrl = that.data.detail.videoUrl;
+    var that = this, videoUrl = that.data.detail.videoUrl;
    // that.data.title = options.title;
     switch (options.id) {
-
+      case "0":
+        videoUrl = util.ossAliyuncs + "/videos/VID20161029121958.mp4"
+        break;
+      case "1"://女儿情
+        videoUrl = util.ossAliyuncs + "/videos/%E5%A5%B3%E5%84%BF%E6%83%85.mp4"
+        break;
+      case "2"://犯错
+        videoUrl = util.ossAliyuncs + "/videos/%E7%8A%AF%E9%94%99-%E5%8F%8C%E7%AE%A1%E5%B7%B4%E4%B9%8C.mp4"
+        break;
+ 
     }
-   // that.data.detail.videoUrl = videoUrl;
+    that.data.detail.videoUrl = videoUrl;
 
     var em = {}, that = this, emChar = that.data.emojiChar.split("-");
     that.data.emoji.forEach(function (v, i) {
@@ -78,7 +96,7 @@ Page({
       for (var i = 0; i < 5; i++) {
         conArr.push({
           avatar: util.ossAliyuncs + "/images/banner5.jpg",
-          uName: "雨碎江南",
+          uName: "我是"+i,
           time: util.formatTime2(new Date()),
           content: "我是上拉加载的新数据" + i
         })
@@ -163,32 +181,5 @@ Page({
         })
       }
     }, 100)
-  },
-  findCommentByActId: function () {
-      var that = this;
-     
-      wx.request({
-        url: app.gData.iServerUrl + '/findCommentByActId',
-        data:{
-          actId:"0003"
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        method: 'GET',
-        success: function (res) {
-          let  result = res.data.data;
-          console.log("*******测试评论message", result);
-        
-            that.setData({
-              comments: result
-            });
-
-        
-        },
-        fail: function (res) {
-          console.log("查询活动失败");
-        }
-      })  //end request
-  },
+  }
 })

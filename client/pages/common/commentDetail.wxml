@@ -6,21 +6,19 @@
   <view class="comments">
     <view class="item touch-active" wx:for="{{comments}}" wx:key="" wx:for-item="c">
       <view class="i-left">
-        <!-- <image class="c-u-img" src="{{c.avatar}}"></image> -->
+        <image class="c-u-img" src="{{c.avatar}}"></image>
       </view>
+      <navigator url="../commentDetail?actId={{c.actId}}">
       <view class="i-right">
         <view class="top">
-          <text class="u-name">{{c.nickName}}</text>
-          <text class="time">{{c.commentDate}}</text>
+          <text class="u-name">{{c.uName}}</text>
+          <text class="time">{{c.time}}</text>
         </view>
-
         <!--评论内容-->
-        <view class="content">  {{c.comment}} </view>
-         <navigator url="commentDetail?actId={{c.actId}}&commentSeq={{c.commentSeq}}">
-        <view class="comment-count"> {{c.replyCount}} 回复>></view>
-         </navigator>
+        <view class="content">{{c.content}} </view>
+         <view class="comment-count"> {{c.count}} 查看更多>></view>
       </view>
-      
+      </navigator>
     </view>
   </view>
 

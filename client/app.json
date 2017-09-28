@@ -26,7 +26,8 @@
     "pages/setup/setup",
     "pages/library/library",
     "pages/library/video",
-    "pages/chat/chat"
+    "pages/chat/chat",
+    "pages/common/commentDetail"
   ],
   "window": {
     "backgroundTextStyle": "white",
