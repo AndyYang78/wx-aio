@@ -40,6 +40,14 @@ router.get('/discoverNearby', controllers.users.discoverNearby)
 router.get('/userList', controllers.users.userList)
 router.get('/userFindByOpenId', controllers.users.userFindByOpenId)
 router.get('/userDetail', controllers.userDetail)
+
+//好友
+router.post('/makeFriend', controllers.friend.makeFriend)
+router.get('/friends', controllers.friend.fetchFriendList)
+router.get('/friendRequestList', controllers.friend.friendRequestList)
+router.post('/friendRequestApproval', controllers.friend.updateRelationshipStatus)
+router.post('/friendRequestRejection', controllers.friend.updateRelationshipStatus)
+
 //活动
 router.get('/actionFindAll', controllers.action.actionFindAll)
 

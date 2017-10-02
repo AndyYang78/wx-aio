@@ -29,14 +29,13 @@ Page({
   formSubmit: function(e){
     console.log(e);
     wx.request({
-      url: app.gData.iServerUrl + '/bearsport/service/friend/makeFriend',
+      //url: app.gData.iServerUrl + '/bearsport/service/friend/makeFriend',
+      url: app.gData.iServerUrl + '/makeFriend',
       method: 'POST',
-      data: {
-        "params": {
+      data:  {
           "friendOpenId": this.data.applyOpenId,
           "openId": app.gData.userInfo.openId,
-          "validationMessage":this.data.applyMessage
-        }
+          "validationMsg":this.data.applyMessage
       },
       header: {
         'content-type': 'application/json' // 默认值
