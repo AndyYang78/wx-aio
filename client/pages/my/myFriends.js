@@ -15,6 +15,38 @@ var location = '';
 var query = '';
 var newFriendList = [];
 
+var populateData = function(value) {
+  return {
+    "user": {
+      "id": value.id,
+      "userId": value.userId,
+      "nickName": value.nickName,
+      "gender": value.gender,
+      "language": value.languange,
+      "city": value.city,
+      "province": value.province,
+      "country": value.country,
+      "avatarUrl": value.avatarUrl,
+      "description": value.description,
+      "level": value.level,
+      "creditLevel": value.creditLevel,
+      "favType1": value.favType1,
+      "favType2": value.favType2,
+      "favType3": value.favType3,
+      "firstLoginTime": value.firstLoginTime,
+      "lastLoginTime": value.lastLoginTime,
+      "openId": value.openId,
+      "latitude": value.latitude,
+      "longitude": value.longitude,
+      "loginCity": value.loginCity
+    },
+    "validationMessage": value.validationMsg,
+    "relationshipStatus": value.relationshipStatus == '0' ? false : true,
+    "applyStatus": value.relationshipStatus == '0' ? false : true
+  };
+};
+
+
 Page({
   data: {
     markers: [],
@@ -158,7 +190,7 @@ Page({
     var iData = {};
     iData.operationCode = "UF"
     wx.request({
-      url: app.gData.iServerUrl + '/bearsport/service/friend/friends?currentUserId=' + app.gData.userInfo.openId,
+      url: app.gData.iServerUrl + '/friends?currentUserId=' + app.gData.userInfo.openId,
       //method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       method: 'GET',
       // header: {}, // 设置请求的 header
@@ -167,15 +199,15 @@ Page({
         console.log("获取熊友列表信息：", res.data);
         //var rlt = res.data.listData;  //result
         //console.log("rlt", rlt);
-        if (res.data.result == "00000") {
+        if (res.data.code == 0) {
 
-          for (var i = 0; i < res.data.listData.length; i++) {
+          for (var i = 0; i < res.data.data.length; i++) {
 
-            res.data.listData[i].lastLoginTime = util.formatTimestamp(res.data.listData[i].lastLoginTime);
+            res.data.data[i].lastLoginTime = util.formatTimestamp(res.data.data[i].lastLoginTime);
             if (dest != "") {
               dest = dest + "|"
             }
-            dest = dest + res.data.listData[i].location.latitude + "," + res.data.listData[i].location.longitude
+            dest = dest + res.data.data[i].latitude + "," + res.data.data[i].longitude
           }
         }
         console.log("location345", dest);
@@ -184,7 +216,7 @@ Page({
           destinations: dest
         });
         that.setData({
-          friendList: res.data.listData
+          friendList: res.data.data
         });
 
         //计算自己与好友间的距离
@@ -206,23 +238,25 @@ Page({
 
     var that = this;
     wx.request({
-      url: app.gData.iServerUrl + '/bearsport/service/friend/friendRequestList?currentUserId=' + app.gData.userInfo.openId,
+      url: app.gData.iServerUrl + '/friendRequestList?currentUserId=' + app.gData.userInfo.openId,
       //method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       method: 'GET',
       // header: {}, // 设置请求的 header
       header: { 'content-type': 'application/json' },
       success: function (res) {
         console.log("===========" + app.gData.userInfo.openId);
-        that.newFriendList = res.data.data;
+        that.newFriendList = [];
 
         for (var i = 0; i < res.data.data.length; i++) {
-          if (res.data.data[i].relationshipStatus == 0) {
-            res.data.data[i].relationshipStatus = false;
-            that.newFriendList[i].applyStatus = false;
-          } else {
-            res.data.data[i].relationshipStatus = true;
-            that.newFriendList[i].applyStatus = true;
-          }
+          //if (res.data.data[i].relationshipStatus == 0) {
+            //res.data.data[i].relationshipStatus = false;
+            //that.newFriendList[i].applyStatus = false;
+          var item = populateData(res.data.data[i]);
+              that.newFriendList.push(item);
+          //} else {
+            //res.data.data[i].relationshipStatus = true;
+            //that.newFriendList[i].applyStatus = true;
+          //}
         }
 
         that.setData({
@@ -232,6 +266,7 @@ Page({
         console.log("friend", that.data.newFriends);
 
       },
+
       fail: function (res) {
         // fail
       },
@@ -246,15 +281,12 @@ Page({
 
     wx.request({
       // url: 'http://59.110.165.245/Lbs_back/servlet/PositionInsert', //位置新增接口地址
-      url: 'https://littlebearsports.com/bearsport/service/friend/friendRequestApproval',
+      //url: 'https://littlebearsports.com/bearsport/service/friend/friendRequestApproval',
+      url: app.gData.iServerUrl + '/friendRequestApproval',
       data: {
-
-        "params": {
           "friendOpenId": e.target.dataset.openid,
           "relationshipStatus": "1",
           "openId": app.gData.userInfo.openId
-        }
-
       },
       header: {
         'content-type': 'application/json'
