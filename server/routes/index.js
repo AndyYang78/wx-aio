@@ -53,4 +53,7 @@ router.get('/actionFindAll', controllers.action.actionFindAll)
 
 //评论
 router.get('/findCommentByActId', controllers.comment.findCommentByActId)
+router.get('/findReplyCommentByActId', controllers.comment.findReplyCommentByActId)
+router.get('/addMainComment', controllers.comment.addMainComment)
+router.get('/addReplyComment', controllers.comment.addReplyComment)
 module.exports = router

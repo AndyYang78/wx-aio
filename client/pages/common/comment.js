@@ -5,7 +5,7 @@ Page({
     isShow: false,//控制emoji表情是否显示
     isLoad: true,//解决初试加载时emoji动画执行一次
     content: "",//评论框的内容
-    isLoading: true,//是否显示加载数据提示
+    isLoading: false,//是否显示加载数据提示
     disabled: true,
     cfBg: false,
     _index: 0,
@@ -33,15 +33,6 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.findCommentByActId();
-    // 页面初始化 options为页面跳转所带来的参数
-   
-    // videoUrl = that.data.detail.videoUrl;
-   // that.data.title = options.title;
-    switch (options.id) {
-
-    }
-   // that.data.detail.videoUrl = videoUrl;
-
     var em = {}, that = this, emChar = that.data.emojiChar.split("-");
     that.data.emoji.forEach(function (v, i) {
       em = {
@@ -50,9 +41,8 @@ Page({
       };
       that.data.emojis.push(em)
     });
-
- 
   },
+
   onReady: function () {
     // 页面渲染完成
     //设置当前标题
@@ -77,7 +67,7 @@ Page({
     if (that.data._index < 5) {
       for (var i = 0; i < 5; i++) {
         conArr.push({
-          avatar: util.ossAliyuncs + "/images/banner5.jpg",
+          avatar: app.gData.userInfo.avatarUrl,
           uName: "雨碎江南",
           time: util.formatTime2(new Date()),
           content: "我是上拉加载的新数据" + i
@@ -139,17 +129,23 @@ Page({
       cfBg: false
     })
   },
+
   //发送评论评论 事件处理
   send: function () {
-    var that = this, conArr = [];
-    //此处延迟的原因是 在点发送时 先执行失去文本焦点 再执行的send 事件 此时获取数据不正确 故手动延迟100毫秒
-    setTimeout(function () {
+    var that = this, 
+    conArr = [];
+   
       if (that.data.content.trim().length > 0) {
         conArr.push({
-          avatar: util.ossAliyuncs + "/images/banner5.jpg",
-          uName: "雨碎江南",
-          time: util.formatTime2(new Date()),
-          content: that.data.content
+          commentSeq:'',
+          actId: '0003',
+          openId: app.gData.userInfo.openId,
+          nickName: app.gData.userInfo.nickName,
+          comment: that.data.content,
+          commentDate: util.formatTime2(new Date()),
+          replyCount: 0,
+          goodCount: 0,
+          avatarUrl: app.gData.userInfo.avatarUrl,
         })
         that.setData({
           comments: that.data.comments.concat(conArr),
@@ -157,12 +153,26 @@ Page({
           isShow: false,
           cfBg: false
         })
+        //数据发送到后台保存
+        console.log("conArr", conArr);
+        wx.request({
+          url: app.gData.iServerUrl + '/addMainComment',
+          data: { comment: conArr[0] },
+          header: { 'content-type': 'application/json'  },
+          method: 'GET',
+          success: function (res) {
+            let result = res.data;
+            console.log("*******insert", result);
+          },
+          fail: function (res) { }
+        })  //end request
+
       } else {
         that.setData({
           content: ""//清空文本域值
         })
       }
-    }, 100)
+
   },
   findCommentByActId: function () {
       var that = this;
@@ -183,11 +193,9 @@ Page({
             that.setData({
               comments: result
             });
-
-        
         },
         fail: function (res) {
-          console.log("查询活动失败");
+          console.log("查询评论失败");
         }
       })  //end request
   },

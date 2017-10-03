@@ -1,25 +1,18 @@
 var util = require("../../common/util")
-
+var app = getApp();
 Page({
   data: {
+    actId:'',
+    commentSeq:'',
     isShow: false,//控制emoji表情是否显示
     isLoad: true,//解决初试加载时emoji动画执行一次
     content: "",//评论框的内容
-    isLoading: true,//是否显示加载数据提示
+    isLoading: false,//是否显示加载数据提示
     disabled: true,
     cfBg: false,
     _index: 0,
-    detail:
-    {
-      imgUrl: util.ossAliyuncs + "/images/bg0.jpg",
-      title: "",
-      avatar: util.ossAliyuncs + "/images/banner4.jpg",
-      uName: "雨碎江南",
-      comment: 789,
-      time: "昨天"
-    },
-    comments: [   
-    ],
+    mainComment:{},
+    replyComment: [],
     emojiChar: "☺-😋-😌-😍-😏-😜-😝-😞-😔-😪-😭-😁-😂-😃-😅-😆-👿-😒-😓-😔-😏-😖-😘-😚-😒-😡-😢-😣-😤-😢-😨-😳-😵-😷-😸-😻-😼-😽-😾-😿-🙊-🙋-🙏-✈-🚇-🚃-🚌-🍄-🍅-🍆-🍇-🍈-🍉-🍑-🍒-🍓-🐔-🐶-🐷-👦-👧-👱-👩-👰-👨-👲-👳-💃-💄-💅-💆-💇-🌹-💑-💓-💘-🚲",
     //0x1f---
     emoji: [
@@ -41,24 +34,13 @@ Page({
     title: ''//页面标题
   },
   onLoad: function (options) {
-    var comment = options.comment;
-    console.log("aa))))", options);
-    // 页面初始化 options为页面跳转所带来的参数
-    var that = this, videoUrl = that.data.detail.videoUrl;
-   // that.data.title = options.title;
-    switch (options.id) {
-      case "0":
-        videoUrl = util.ossAliyuncs + "/videos/VID20161029121958.mp4"
-        break;
-      case "1"://女儿情
-        videoUrl = util.ossAliyuncs + "/videos/%E5%A5%B3%E5%84%BF%E6%83%85.mp4"
-        break;
-      case "2"://犯错
-        videoUrl = util.ossAliyuncs + "/videos/%E7%8A%AF%E9%94%99-%E5%8F%8C%E7%AE%A1%E5%B7%B4%E4%B9%8C.mp4"
-        break;
- 
-    }
-    that.data.detail.videoUrl = videoUrl;
+    that = this;
+    that.setData({
+      commentSeq:options.commentSeq,
+      actId: options.actId
+    });
+  
+    that.findReplyCommentByActId();
 
     var em = {}, that = this, emChar = that.data.emojiChar.split("-");
     that.data.emoji.forEach(function (v, i) {
@@ -68,8 +50,6 @@ Page({
       };
       that.data.emojis.push(em)
     });
-
- 
   },
   onReady: function () {
     // 页面渲染完成
@@ -95,7 +75,7 @@ Page({
     if (that.data._index < 5) {
       for (var i = 0; i < 5; i++) {
         conArr.push({
-          avatar: util.ossAliyuncs + "/images/banner5.jpg",
+          avatar: app.gData.userInfo.avatarUrl,
           uName: "我是"+i,
           time: util.formatTime2(new Date()),
           content: "我是上拉加载的新数据" + i
@@ -164,7 +144,7 @@ Page({
     setTimeout(function () {
       if (that.data.content.trim().length > 0) {
         conArr.push({
-          avatar: util.ossAliyuncs + "/images/banner5.jpg",
+          avatar: app.gData.userInfo.avatarUrl,
           uName: "雨碎江南",
           time: util.formatTime2(new Date()),
           content: that.data.content
@@ -181,5 +161,37 @@ Page({
         })
       }
     }, 100)
-  }
+  },
+
+  findReplyCommentByActId: function () {
+    var that = this;
+    console.log("actId", that.data.actId);
+    console.log("commentSeq", that.data.commentSeq);
+    wx.request({
+      url: app.gData.iServerUrl + '/findReplyCommentByActId',
+      data: {
+        actId: that.data.actId,
+        commentSeq: that.data.commentSeq,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'GET',
+      success: function (res) {
+        let result = res.data.data;
+        console.log("*******测试评论message", result);
+
+        that.setData({
+          mainComment: result.mainComment[0]
+        });
+
+        that.setData({
+          replyComment: result.replyComment
+        });
+      },
+      fail: function (res) {
+        console.log("查询活动失败");
+      }
+    })  //end request
+  },
 })

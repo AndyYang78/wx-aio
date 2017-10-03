@@ -2,23 +2,40 @@
 <import src="../../common/template" />
 <view class="container">
 
-  <!--评论列表-->
+
+   <!--主评论列表-->
   <view class="comments">
-    <view class="item touch-active" wx:for="{{comments}}" wx:key="" wx:for-item="c">
+    <view class="item touch-active">
       <view class="i-left">
-        <image class="c-u-img" src="{{c.avatar}}"></image>
+         <image class="c-u-img" src="{{mainComment.avatarUrl}}"></image> 
       </view>
-      <navigator url="../commentDetail?actId={{c.actId}}">
+  
       <view class="i-right">
         <view class="top">
-          <text class="u-name">{{c.uName}}</text>
-          <text class="time">{{c.time}}</text>
+          <text class="u-name">{{mainComment.nickName}}</text>
+          <text class="time">{{c.commentDate}}</text>
         </view>
         <!--评论内容-->
-        <view class="content">{{c.content}} </view>
-         <view class="comment-count"> {{c.count}} 查看更多>></view>
+        <view class="content">{{mainComment.comment}} </view>
+         <!-- <view class="comment-count"> {{mainComment.count}} 查看更多>></view> -->
       </view>
-      </navigator>
+
+    </view>
+  </view>
+
+  <!--评论回复列表-->
+  <view class="comments">
+    <view class="item touch-active" wx:for="{{replyComment}}" wx:key="" wx:for-item="c">
+      <view class="i-left">
+         <image class="c-u-img" src="{{c.avatarUrl}}"></image> 
+      </view>
+      <view class="i-right">
+        <view class="top">
+          <text class="u-name">{{c.nickName}}</text>
+          <text class="time">{{c.commentDate}}</text>
+        </view>
+        <view class="content">{{c.comment}} </view>      <!--评论内容-->
+      </view>
     </view>
   </view>
 
