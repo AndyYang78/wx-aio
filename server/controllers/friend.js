@@ -38,7 +38,13 @@ async function friendRequestList(ctx, next) {
 
 async function updateRelationshipStatus(ctx, next){
   const params = ctx.request.body;
-  await mysql('t_friends').where('openId', '=', params.openId).andWhere('friendOpenId', '=', params.friendOpenId).update('relationshipStatus', params.relationshipStatus).then(function(data){
+  //await mysql('t_friends').where('openId','=', params.openId).andWhere('friendOpenId', '=', 
+  await mysql('t_friends').where({
+    openId: params.friendOpenId,
+    friendOpenId: params.openId
+  }).update({
+    relationshipStatus: params.relationshipStatus
+  }).then(function(data){
     ctx.state.data = data;
   });
 }
