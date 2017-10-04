@@ -53,6 +53,7 @@ router.get('/actionFindAll', controllers.action.actionFindAll)
 router.get('/activityDetail', controllers.action.activityDetail)
 router.get('/joiners', controllers.action.getActJoiners)
 router.post('/joinActivity', controllers.action.joinActivity)
+router.post('/createActivity', controllers.action.createActivity)
 
 //评论
 router.get('/findCommentByActId', controllers.comment.findCommentByActId)

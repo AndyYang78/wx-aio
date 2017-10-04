@@ -73,7 +73,7 @@ Page({
   },
   
 //表单提交
-  formSubmit: function (e) {
+  formSubmit1: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     var that = this;
     console.log("action:" + that.data.action);
@@ -209,28 +209,36 @@ Page({
 
 
 //点击提交后页面跳转
-   submitActive:function (e) {
+  formSubmit:function (e) {
      var that = this;
      console.log("action:" + that.data.action);
      wx.request({
        // url: 'http://59.110.165.245/Lbs_back/servlet/PositionInsert', //位置新增接口地址
-       url: 'https://littlebearsports.com/bearsport/service/activity/activityMaintain',
+       //url: 'https://littlebearsports.com/bearsport/service/activity/activityMaintain',
+       url: app.gData.iServerUrl + '/createActivity',
        data: {
-         operationCode:'CA',
-         actSubject: that.data.actTitle,                             //活动标题
+        // operationCode:'CA',
+         id: util.uuid(32, 16),
+         actId: util.uuid(4, 16),
+         actSubject: e.detail.value.actSubject,                             //活动标题
          sprType: that.data.sprTypes[that.data.sprTypeIndex],        //活动类型
          actType: that.data.actTypes[that.data.actTypeIndex],       //运动类型
          feeType: that.data.feeTypes[that.data.feeTypeIndex],       //费用类型
-         feeEst : 1 ,                                               //费用预估
-         planPeople: that.data.planPeople,                          //人数限制
+         fee : e.detail.value.feeEst ,                                               //费用预估
+         planPeople: e.detail.value.planPeople,                          //人数限制
          actDate: that.data.actDate,                                //活动日期
          actTime: that.data.actTime,                                //活动时间
         // actTerm: that.data.actTerms[that.data.actTermIndex],
          areaName: that.data.areaName,                              //场馆名称
          areaAddress: that.data.areaAddress,                        //场馆地址
-         areaLocation: { "latitude": 34.34, "longitude": 108.94 },  //场馆坐标
-         openId: openId,    //后续添加ID标记发起用户
-         wordsInput: that.data.words,                               //留言
+         //areaLocation: { "latitude": 34.34, "longitude": 108.94 },  //场馆坐标
+         openId: app.gData.userInfo.openId,    //后续添加ID标记发起用户
+         wordInput: that.data.words,                               //留言
+         createDate: util.formatTime2(new Date()),
+         actStatus: 'A',
+         nickName: app.gData.userInfo.nickName,
+         userId: app.gData.userInfo.userId
+
        },
        header: {
          'content-type': 'application/json'

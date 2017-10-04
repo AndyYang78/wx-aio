@@ -31,9 +31,17 @@ async function joinActivity(ctx, next){
   })
 }
 
+async function createActivity(ctx, next) {
+  const params = ctx.request.body;
+  await mysql('t_activity').insert(params).then(function (data) {
+    ctx.state.data = data;
+  })
+}
+
   module.exports = {
     actionFindAll,
     activityDetail,
     getActJoiners,
-    joinActivity
+    joinActivity,
+    createActivity
   }
