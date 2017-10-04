@@ -128,16 +128,34 @@ App({
         openId: that.gData.userInfo.openId,
         longitude: that.gData.location.longitude,
         latitude: that.gData.location.latitude,
-        city: that.gData.location.city
+        city: that.gData.location.city,
+        lastLoginTime: util.formatTime2(new Date())
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
         console.log("用户业务信息", res.data)
-        that.gData.lbsUserInfo = res.data.data[0];
+        wx.request({
+          url: that.gData.iServerUrl + '/userDetail?openId=' + that.gData.userInfo.openId,
+          method: 'GET',
+          success: function (resp) {
+            console.log("获取用户详情信息：", resp);
+            resp.data.data[0].lastLoginTime = util.getLocalTime(resp.data.data[0].lastLoginTime);
+            resp.data.data[0].firstLoginTime = util.getLocalTime(resp.data.data[0].firstLoginTime);
 
-        console.log("全局变量：", that.gData);
+            that.gData.lbsUserInfo = res.data.data[0];
+
+            console.log("全局变量：", that.gData);
+
+          },
+          fail: function (res) {
+            // fail
+          },
+          complete: function (res) {
+            // complete
+          }
+        })
       }
     })
   },

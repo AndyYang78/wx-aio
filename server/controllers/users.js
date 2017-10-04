@@ -38,6 +38,7 @@ async function userLogin(ctx, next) {
     latitude: ctx.query.latitude,
     longitude: ctx.query.longitude,
     loginCity:ctx.query.city,
+    lastLoginTime: ctx.query.lastLoginTime
     //LEVEL:   
   })
   //.increment('LEVEL', 1)
