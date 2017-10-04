@@ -132,20 +132,21 @@ Page({
      //发送请求查询参加人员信息
      var that = this;
            wx.request({
-             url: 'https://littlebearsports.com/bearsport/service/userActivity/getActivityJoiners',
-             data: { actId:actId },
-             method: 'POST', 
+             //url: 'https://littlebearsports.com/bearsport/service/userActivity/getActivityJoiners',
+             url: app.gData.iServerUrl + '/joiners?actId=' + actId,
+             //data: { actId:actId },
+             method: 'GET', 
       
              success: function(res){
             // success
                 var tt=res.data;
-                for (var i = 0; i < res.data.listData.length; i++) {
-                  res.data.listData[i].joinDate=util.formatOnlyDate(new Date(res.data.listData[i].joinDate),"-");
+                for (var i = 0; i < res.data.data.length; i++) {
+                  res.data.data[i].joinDate = util.formatOnlyDate(new Date(res.data.data[i].joinDate),"-");
 
                 }
                 console.log("selectJoiner:", res);
                 that.setData({
-                  joinners:res.data.listData
+                  joinners: res.data.data
                 });
               },
               fail: function(res) {

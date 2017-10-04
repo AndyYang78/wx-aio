@@ -51,6 +51,7 @@ router.post('/friendRequestRejection', controllers.friend.updateRelationshipStat
 //活动
 router.get('/actionFindAll', controllers.action.actionFindAll)
 router.get('/activityDetail', controllers.action.activityDetail)
+router.get('/joiners', controllers.action.getActJoiners)
 
 //评论
 router.get('/findCommentByActId', controllers.comment.findCommentByActId)

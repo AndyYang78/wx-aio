@@ -17,7 +17,15 @@ async function activityDetail(ctx, next){
   })
 }
 
+async function getActJoiners(ctx, next){
+  const actId = ctx.query.actId;
+  await mysql('t_useractivity').select('*').where('actId', actId).then(function(data){
+    ctx.state.data = data;
+  })
+}
+
   module.exports = {
     actionFindAll,
-    activityDetail
+    activityDetail,
+    getActJoiners
   }
