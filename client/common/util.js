@@ -56,13 +56,16 @@ function getLocalTime(now) {
 }      
 
 function formatTimestamp(dateTimeStamp) {
+    var date = new Date(dateTimeStamp);
+    var time = date.getTime();
   	var minute = 1000 * 60;
     var hour = minute * 60;
     var day = hour * 24;
     var halfamonth = day * 15;
     var month = day * 30;
     var now = new Date().getTime();
-    var diffValue = now - dateTimeStamp;
+    //var diffValue = now - dateTimeStamp;
+    var diffValue = now - time;
     if(diffValue < 0){return;}
     var  result="刚刚";
     var monthC =diffValue/month;
