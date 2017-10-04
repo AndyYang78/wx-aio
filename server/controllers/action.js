@@ -8,6 +8,16 @@ async function actionFindAll(ctx, next) {
   })
 }
 
+async function activityDetail(ctx, next){
+  const actId =  ctx.query.actId;
+  await mysql.select('a.id', 'a.actId', 'a.actType', 'a.feeType','a.planPeople', 'a.sprType', 'a.actDate', 'a.actTime','a.areaName', 'a.areaAddress', 'u.creditLevel').from(function(){
+    this.select('id', 'actId','actType', 'feeType','planPeople', 'sprType', 'actDate', 'actTime','userId','openId','heat','createDate','actStatus','fee','areaName', 'areaAddress','areaLatitude','areaLongitude','wordInput','actSubject','nickName','contactNum','enrPeople').from('t_activity').where('actId', actId).as('a')
+  }).innerJoin('t_user as u', 'a.openId', 'u.openId').then(function(data){
+    ctx.state.data = data;
+  })
+}
+
   module.exports = {
-    actionFindAll
+    actionFindAll,
+    activityDetail
   }

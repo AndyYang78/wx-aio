@@ -16,5 +16,5 @@ async function findCommentByActId(ctx, next) {
 
 
 module.exports = {
-  findCommentByActId,
+  findCommentByActId
 }

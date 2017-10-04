@@ -34,18 +34,20 @@ Page({
     console.log("a啊啊："+actId);
     var that = this;
        wx.request({
-         url: 'https://littlebearsports.com/bearsport/service/activity/activityMaintain' ,//活动明细查询接口地址
-            data: {
-              actId: actId ,
-              "operationCode": "FAD"
+         //url: 'https://littlebearsports.com/bearsport/service/activity/activityMaintain' ,//活动明细查询接口地址
+         url: app.gData.iServerUrl + "/activityDetail?actId=" + actId,
+            //data: {
+            //  actId: actId ,
+              //"operationCode": "FAD"
              // sprType:"羽毛球"
-            },
+            //},
             header: {
+
                 'content-type': 'application/json'
             },
-            method: 'POST', 
+            method: 'GET', 
             success: function(res) {
-              var result = res.data.listData;
+              var result = res.data.data;
               result[0].actDate = util.formatOnlyDate(new Date(result[0].actDate), "-")
               console.log("message1",result);
                 console.log(result[0]);

@@ -108,7 +108,7 @@
           <view class="weui-label">发起人信用</view>
         </view>
         <view class="weui-cell__ft">
-          <view class="weui-input">{{activeInfo.pubCredit}}</view>
+          <view class="weui-input">{{activeInfo.creditLevel}}</view>
         </view>
       </view>
 

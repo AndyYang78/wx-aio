@@ -49,6 +49,10 @@ async function updateRelationshipStatus(ctx, next){
   });
 }
 
+async function socialUpdate(ctx, next){
+  
+}
+
 module.exports = {
   makeFriend,
   fetchFriendList,
