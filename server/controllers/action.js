@@ -24,8 +24,16 @@ async function getActJoiners(ctx, next){
   })
 }
 
+async function joinActivity(ctx, next){
+  const params = ctx.request.body;
+  await mysql('t_useractivity').insert(params).then(function(data){
+    ctx.state.data = data;
+  })
+}
+
   module.exports = {
     actionFindAll,
     activityDetail,
-    getActJoiners
+    getActJoiners,
+    joinActivity
   }

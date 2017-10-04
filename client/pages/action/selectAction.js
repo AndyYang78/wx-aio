@@ -76,31 +76,35 @@ Page({
         if (res.confirm) {
           //点击确认
              wx.request({
-               url: 'https://littlebearsports.com/bearsport/service/userActivity/userActivityMaintain',
+               //url: 'https://littlebearsports.com/bearsport/service/userActivity/userActivityMaintain',
+               url: app.gData.iServerUrl + '/joinActivity',
              data: {
                 actId:actId,
                 openId :app.gData.userInfo.openId,
-                joinRemark:'',
-                operationCode:"ACA",
-                joinerName: app.gData.userInfo.nickName
+                detail:'',
+                //operationCode:"ACA",
+                joinerName: app.gData.userInfo.nickName,
+                joinDate: util.formatOnlyDate(new Date(), '-'),
+                joinTime: util.formatOnlyTime(new Date(), ':'),
+                joinerType: '0',
+                status: '1'
               },
              method: 'POST', 
              success: function(res){
-           
-                var results=res.data.errorCode;
-                console.log("addACT:",results);
-                if(results[0] == "10000"){
+                console.log("addACT:",res);
+                if (res.data.data && res.data.data[0] == 0){
                  //操作成功提示
                    wx.showToast({
-                      title: '您已报名过该活动',
+                     title: '成功',
                       icon: 'success',
                       duration: 2000
                     })
-                }else{
+                } else if (res.data && res.data.code == '-1'){
                   //已经报名
                   //操作成功提示
                   wx.showToast({
-                     title: '成功',
+                     //title: '成功',
+                      title: 'SYS ERR',
                       icon: 'success',
                      duration: 2000
                   })
