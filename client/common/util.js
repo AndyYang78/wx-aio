@@ -91,6 +91,8 @@ function formatTimestamp(dateTimeStamp) {
     return result;
 }
 //评论模板用
+var ossAliyuncs = "http://soupu.oss-cn-shanghai.aliyuncs.com";
+
 function formatTime2(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -117,6 +119,34 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function uuid(len, radix) {
+  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  var uuid = [], i;
+  radix = radix || chars.length;
+
+  if (len) {
+    // Compact form
+    for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
+  } else {
+    // rfc4122, version 4 form
+    var r;
+
+    // rfc4122 requires these characters
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+    uuid[14] = '4';
+
+    // Fill in random data.  At i==19 set the high bits of clock sequence as
+    // per rfc4122, sec. 4.1.5
+    for (i = 0; i < 36; i++) {
+      if (!uuid[i]) {
+        r = 0 | Math.random() * 16;
+        uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+      }
+    }
+  }
+
+  return uuid.join('');
+}
 
 module.exports.formatTime = formatTime;
 module.exports.formatOnlyDate = formatOnlyDate;
@@ -127,3 +157,5 @@ module.exports.formatTimestamp = formatTimestamp;
 module.exports.getLocalTime = getLocalTime;
 module.exports.formatTime2 = formatTime2;
 module.exports.formatDate = formatDate;
+module.exports.ossAliyuncs = ossAliyuncs;
+module.exports.uuid = uuid;
