@@ -32,46 +32,44 @@ Page({
 
 
   onLoad: function (options) {
-    var that = this;
+    //var that = this;
     // 页面初始化 options为页面跳转所带来的参数
-    console.log("actionList-全局变量：", app.gData);
 
-    that.setData(
-      {
-        city: app.gData.location.city,
-        district: app.gData.location.district
-      })
-    wx.request({
-      url: 'https://yfaq43ae.qcloud.la/weapp/userFindAll',
-      header: {
-        'content-type': 'application/json'
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log("res:",res);
+    try {
+      var value = wx.getStorageSync('city')
+      if (value) {
+        this.setData(
+          {
+            city: value,
+            
+          })
       }
-    })
+    } catch (e) {
+      // Do something when catch error
+    }
+
+    
+    // wx.request({
+    //   url: 'https://yfaq43ae.qcloud.la/weapp/userFindAll',
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   method: 'GET',
+    //   success: function (res) {
+    //     console.log("res:",res);
+    //   }
+    // })
 
     //查询活动清单
-    that.actionList();
+    this.actionList();
   },
 
   onReady: function () {
     // 页面渲染完成
-    this.setData(
-      {
-        city: app.gData.location.city,
-        district: app.gData.location.district
-      })
+    
   },
   onShow: function () {
     // 页面显示,从后台j进入前台时刷新页面
-
-    this.setData(
-      {
-        city: app.gData.location.city,
-        district: app.gData.location.district
-      })
 
     this.actionList();
   },

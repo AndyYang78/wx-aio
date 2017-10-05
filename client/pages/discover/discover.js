@@ -121,7 +121,7 @@ Page({
   getCity: function () {
 
       this.setData({
-        cityName: app.gData.cityName
+        cityName: app.gData.location.city
       })
       this.setData({
         origins: app.gData.location.latitude + "," + app.gData.location.longitude
