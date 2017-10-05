@@ -91,7 +91,7 @@ function formatTimestamp(dateTimeStamp) {
     return result;
 }
 //评论模板用
-var ossAliyuncs = "http://soupu.oss-cn-shanghai.aliyuncs.com";
+//var ossAliyuncs = "http://soupu.oss-cn-shanghai.aliyuncs.com";
 
 function formatTime2(date) {
   var year = date.getFullYear()
@@ -157,5 +157,5 @@ module.exports.formatTimestamp = formatTimestamp;
 module.exports.getLocalTime = getLocalTime;
 module.exports.formatTime2 = formatTime2;
 module.exports.formatDate = formatDate;
-module.exports.ossAliyuncs = ossAliyuncs;
+//module.exports.ossAliyuncs = ossAliyuncs;
 module.exports.uuid = uuid;

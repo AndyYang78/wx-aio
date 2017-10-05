@@ -1,5 +1,6 @@
 var util = require("../../common/util")
 var app = getApp();
+var util = require('../../common/util.js');
 Page({
   data: {
     isShow: false,//控制emoji表情是否显示
@@ -98,7 +99,7 @@ Page({
     this.setData({
       content: e.detail.value
     })
-
+    console.log('content', this.data.content)
   },
   //文本域获得焦点事件处理
   textAreaFocus: function () {
@@ -134,10 +135,10 @@ Page({
   send: function () {
     var that = this, 
     conArr = [];
-   
+    let id = util.uuid(30, 16);
       if (that.data.content.trim().length > 0) {
         conArr.push({
-          commentSeq:'',
+          commentSeq: id,
           actId: '0003',
           openId: app.gData.userInfo.openId,
           nickName: app.gData.userInfo.nickName,
@@ -147,17 +148,22 @@ Page({
           goodCount: 0,
           avatarUrl: app.gData.userInfo.avatarUrl,
         })
-        that.setData({
-          comments: that.data.comments.concat(conArr),
-          content: "",//清空文本域值
-          isShow: false,
-          cfBg: false
-        })
+    
         //数据发送到后台保存
-        console.log("conArr", conArr);
+        console.log("conArr", conArr[0]);
         wx.request({
           url: app.gData.iServerUrl + '/addMainComment',
-          data: { comment: conArr[0] },
+          data: { //comment: conArr[0] 
+            commentSeq:id,
+            actId: '0003',
+            openId: app.gData.userInfo.openId,
+            nickName: app.gData.userInfo.nickName,
+            comment: that.data.content,
+            commentDate: util.formatTime2(new Date()),
+            replyCount: 0,
+            goodCount: 0,
+            avatarUrl: app.gData.userInfo.avatarUrl,
+          },
           header: { 'content-type': 'application/json'  },
           method: 'GET',
           success: function (res) {
@@ -166,7 +172,12 @@ Page({
           },
           fail: function (res) { }
         })  //end request
-
+        that.setData({
+          comments: that.data.comments.concat(conArr),
+          content: "",//清空文本域值
+          isShow: false,
+          cfBg: false
+        })
       } else {
         that.setData({
           content: ""//清空文本域值

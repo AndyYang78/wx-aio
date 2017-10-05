@@ -1,5 +1,6 @@
 {
   "pages": [
+      "pages/common/comment",
     "pages/action/actionList",
     "pages/action/createAction",
     "pages/action/selectAction",

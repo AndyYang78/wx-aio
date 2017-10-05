@@ -26,15 +26,18 @@ async function findCommentByActId(ctx, next) {
 
 //新增主评论
 async function addMainComment(ctx, next) {
-
-  const params = ctx.request.body;
+  console.log("ctx.request", ctx.request);
+  console.log("ctx.query", ctx.query);
+  const params = ctx.query;
   await mysql('t_mainComment').insert(params).then(function (data) {
     ctx.state.data = data;
   })
 }
 //新增评论回复
 async function addReplyComment(ctx, next) {
-  const params = ctx.request.body;
+  //console.log("****insert comment******", ctx);
+  const params = ctx.query;
+  
   await mysql('t_replyComment').insert(params).then(function (data) {
     ctx.state.data = data;
   })

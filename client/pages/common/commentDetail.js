@@ -179,7 +179,7 @@ Page({
       method: 'GET',
       success: function (res) {
         let result = res.data.data;
-        console.log("*******测试评论message", result);
+        console.log("*******reply message", result);
 
         that.setData({
           mainComment: result.mainComment[0]
