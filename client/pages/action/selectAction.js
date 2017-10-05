@@ -34,18 +34,20 @@ Page({
     console.log("a啊啊："+actId);
     var that = this;
        wx.request({
-         url: 'https://littlebearsports.com/bearsport/service/activity/activityMaintain' ,//活动明细查询接口地址
-            data: {
-              actId: actId ,
-              "operationCode": "FAD"
+         //url: 'https://littlebearsports.com/bearsport/service/activity/activityMaintain' ,//活动明细查询接口地址
+         url: app.gData.iServerUrl + "/activityDetail?actId=" + actId,
+            //data: {
+            //  actId: actId ,
+              //"operationCode": "FAD"
              // sprType:"羽毛球"
-            },
+            //},
             header: {
+
                 'content-type': 'application/json'
             },
-            method: 'POST', 
+            method: 'GET', 
             success: function(res) {
-              var result = res.data.listData;
+              var result = res.data.data;
               result[0].actDate = util.formatOnlyDate(new Date(result[0].actDate), "-")
               console.log("message1",result);
                 console.log(result[0]);
@@ -74,31 +76,35 @@ Page({
         if (res.confirm) {
           //点击确认
              wx.request({
-               url: 'https://littlebearsports.com/bearsport/service/userActivity/userActivityMaintain',
+               //url: 'https://littlebearsports.com/bearsport/service/userActivity/userActivityMaintain',
+               url: app.gData.iServerUrl + '/joinActivity',
              data: {
                 actId:actId,
                 openId :app.gData.userInfo.openId,
-                joinRemark:'',
-                operationCode:"ACA",
-                joinerName: app.gData.userInfo.nickName
+                detail:'',
+                //operationCode:"ACA",
+                joinerName: app.gData.userInfo.nickName,
+                joinDate: util.formatOnlyDate(new Date(), '-'),
+                joinTime: util.formatOnlyTime(new Date(), ':'),
+                joinerType: '0',
+                status: '1'
               },
              method: 'POST', 
              success: function(res){
-           
-                var results=res.data.errorCode;
-                console.log("addACT:",results);
-                if(results[0] == "10000"){
+                console.log("addACT:",res);
+                if (res.data.data && res.data.data[0] == 0){
                  //操作成功提示
                    wx.showToast({
-                      title: '您已报名过该活动',
+                     title: '成功',
                       icon: 'success',
                       duration: 2000
                     })
-                }else{
+                } else if (res.data && res.data.code == '-1'){
                   //已经报名
                   //操作成功提示
                   wx.showToast({
-                     title: '成功',
+                     //title: '成功',
+                      title: 'SYS ERR',
                       icon: 'success',
                      duration: 2000
                   })
@@ -130,20 +136,21 @@ Page({
      //发送请求查询参加人员信息
      var that = this;
            wx.request({
-             url: 'https://littlebearsports.com/bearsport/service/userActivity/getActivityJoiners',
-             data: { actId:actId },
-             method: 'POST', 
+             //url: 'https://littlebearsports.com/bearsport/service/userActivity/getActivityJoiners',
+             url: app.gData.iServerUrl + '/joiners?actId=' + actId,
+             //data: { actId:actId },
+             method: 'GET', 
       
              success: function(res){
             // success
                 var tt=res.data;
-                for (var i = 0; i < res.data.listData.length; i++) {
-                  res.data.listData[i].joinDate=util.formatOnlyDate(new Date(res.data.listData[i].joinDate),"-");
+                for (var i = 0; i < res.data.data.length; i++) {
+                  res.data.data[i].joinDate = util.formatOnlyDate(new Date(res.data.data[i].joinDate),"-");
 
                 }
                 console.log("selectJoiner:", res);
                 that.setData({
-                  joinners:res.data.listData
+                  joinners: res.data.data
                 });
               },
               fail: function(res) {
