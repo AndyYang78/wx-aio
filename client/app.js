@@ -111,6 +111,11 @@ App({
         var district = res.data.result.addressComponent.district;
         that.gData.location.city = city;
         that.gData.location.district = district;
+
+        try {
+          wx.setStorageSync('city', city)
+        } catch (e) {
+        }
         that.updateUserBiz();
       },
       fail: function () {
