@@ -4,9 +4,10 @@
   <view class="page__bd">
     <view class="weui-flex">
       <view class="swiper-tab">
-        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNavi">我的好友</view>
-        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNavi">新的好友</view>
-
+<!--        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNavi">我的好友</view>
+-->
+<!--        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNavi">新的好友</view>
+-->
       </view>
     </view>
 

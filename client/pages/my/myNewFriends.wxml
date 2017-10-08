@@ -2,6 +2,27 @@
   <view class="page__hd">
   </view>
   <view class="page__bd">
+            <scroll-view scroll-y style="height:{{winHeight}}px">
+            <view class="page_list" wx:for="{{newFriends}}" wx:key="openId">
+              <view class="lineB">
+                <view class="weui-flex">
+                  <view class="weui-flex__item">
+                    {{item.user.nickName}}
+                  </view>
+                  <view class="">
+                    <button disabled="{{item.applyStatus}}" class="weui-btn mini-btn" type="primary" size="mini" bindtap="approveRequest" data-openid="{{item.user.openId}}">
+                    {{item.applyStatus ? '已接受':'接受'}}</button>
+                  </view>
+                </view>
+                <view class="weui-flex">
+                  <view class="weui-flex__item weui-media-box__desc">
+                    {{item.validationMessage}} | {{item.time}}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+
   </view>
   <view class="page__ft">
   </view>

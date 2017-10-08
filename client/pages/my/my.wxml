@@ -22,9 +22,9 @@
       <view class="swiper-tab">
         <navigator class="swiper-tab-list" url="../../pages/my/myFriends" hover-class="navigator-hover">我的好友</navigator>
         |
-        <navigator class="swiper-tab-list" url="../../pages/my/myFriends" hover-class="navigator-hover">最近来访</navigator>
+<!--       <navigator class="swiper-tab-list" url="../../pages/my/myFriends" hover-class="navigator-hover">最近来访</navigator>
         |
-        <navigator class="swiper-tab-list" url="../../pages/my/myNewFriends" hover-class="navigator-hover">新的好友</navigator>
+-->        <navigator class="swiper-tab-list" url="../../pages/my/myNewFriends" hover-class="navigator-hover">新的好友</navigator>
       </view>
     </view>
   </view>
